@@ -8,21 +8,24 @@ public class SquareRootAproximationAppTest {
     @Test
     public void testCalculateSquareRoot() {
 
-        Double result = SquareRootAproximation.calculateSquareRoot(9);
-        assertEquals(3.0);
+        Function<Double, Double> squareRootAproximation = new SquareRootAproximation();
 
-        result = SquareRootAproximation.calculateSquareRoot(25);
-        assertEquals(5.0);
+        Double result = squareRootAproximation.apply(9.0);
+        assertEquals(3.0, result);
 
-        result = SquareRootAproximation.calculateSquareRoot(2);
-        assertEquals(Math.sqrt(2));
+        result = squareRootAproximation.apply(25.0);
+        assertEquals(5.0, result);
+
+        result = squareRootAproximation.apply(2.0);
+        assertEquals(Math.sqrt(2), result);
     }
 
     @Test
     public void testCalculateSquareRootWithNegativeInput() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            SquareRootAproximation.calculateSquareRoot(-1);
-        });
+        Function<Double, Double> squareRootAproximation = new SquareRootAproximation();
+        assertThrows(IllegalArgumentException.class, () -> 
+            squareRootAproximation.apply(-1);
+        );
     }
 
 }
