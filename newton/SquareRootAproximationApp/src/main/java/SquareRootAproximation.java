@@ -1,16 +1,17 @@
-public class SquareRootAproximation {
+import java.util.function.Function;
 
-    public static double calculateSquareRoot(Integer x, Double epsilon, Integer maxIterations) {
+public class SquareRootAproximation implements Function<Double, Double> {
+
+    private static final Double EPSILON = 0.001;
+
+    public Double apply(Double x) {
         if (x < 0)
             throw new IllegalArgumentException("X não pode ser negativo");
-
+        
         Double guess = x / 2.0;
-        Integer iterations = 0;
 
-        while (Math.abs(guess * guess - x) > epsilon && iterations < maxIterations) {
+        while(Math.abs(guess * guess - x) > EPSILON)
             guess = 0.5 * (guess + x / guess);
-            iterations++;
-        }
 
         return guess;
     }

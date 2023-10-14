@@ -3,10 +3,11 @@ import java.util.Scanner;
 public class SquareRootAproximationApp {
 
     public static void main(String[] args) {
+        Function<Double, Double> squareRootAproximation = new SquareRootAproximation();
         System.out.println("Insira um valor:\n");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Resultado: " + SquareRootAproximation.calculateSquareRoot(scanner.nextInt(), 0.001, 100));
-        System.out.println("Obtido com Epsilon de 0.001 e um Máximo de 100 iterações");
+        System.out.println("Resultado: " + squareRootAproximation.apply(scanner.nextInt());
+        System.out.println("Obtido com Epsilon de 1e-10");
     }
 
 }
