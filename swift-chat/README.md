@@ -12,6 +12,40 @@ O objetivo principal do SwiftChat é suprir a crescente demanda por soluções d
 ### Proposta de Solução
 O SwiftChat é uma proposta de software que resolve o problema da comunicação em tempo real, proporcionando uma experiência de chat dinâmica e interativa, oferecendo uma aplicação robusta e amigável. A solução consiste em um sistema de chat baseado em WebSockets, implementado em Java e Spring Boot.
 
+## Cenários de uso da aplicação
+### Cenário 1: Sala de Aula com Aluno com Dificuldades de Expressão Verbal
+#### Contexto:
+Em uma sala de aula, um aluno enfrenta dificuldades em verbalizar suas dúvidas devido à timidez, vergonha ou problemas de fala.
+
+#### Ação do Usuário:
+- O aluno, enfrentando uma dúvida ou dificuldade, decide enviar uma mensagem no chat da sala de aula.
+#### Interatividade:
+- O aluno utiliza o chat para formular sua pergunta ou expressar sua dúvida de forma escrita, sem a necessidade de fala.
+#### Benefícios:
+- Permite que alunos com dificuldades de expressão verbal participem ativamente, superando barreiras e contribuindo para o ambiente de aprendizado.
+
+### Cenário 2: Espera entre Alunos em um Contexto de Perguntas ao Professor
+
+#### Contexto:
+- Em um ambiente onde os alunos devem esperar sua vez para fazer perguntas ao professor, há o risco de esquecer o que queriam perguntar durante a espera.
+#### Ação do Usuário:
+- Um aluno, enquanto espera sua vez para fazer uma pergunta ao professor, decide registrar a pergunta no chat para evitar esquecimentos.
+#### Interatividade:
+- O aluno utiliza o chat para digitar a pergunta, mantendo-a registrada enquanto aguarda a oportunidade de falar com o professor.
+#### Benefícios:
+- Evita que os alunos esqueçam suas perguntas durante a espera, garantindo que todas as dúvidas sejam abordadas.
+
+### Cenário 3: Sala de Aula em um Ambiente Grande ou Auditório
+#### Contexto:
+Em uma sala de aula muito grande ou auditório, os alunos podem enfrentar dificuldades ao tentar fazer perguntas ao professor devido à distância.
+
+#### Ação do Usuário:
+- Um aluno, mesmo estando distante do professor, deseja esclarecer uma dúvida ou fazer uma pergunta.
+#### Interatividade:
+- O aluno utiliza o chat para enviar a pergunta ao professor, garantindo que ela seja recebida mesmo a uma distância considerável.
+#### Benefícios:
+- Elimina a necessidade de gritar ou levantar a voz, proporcionando um ambiente mais confortável para os alunos e evitando desgaste vocal.
+
 ## Composição da Aplicação:
 
 ### Back-End:
