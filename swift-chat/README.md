@@ -33,19 +33,29 @@ RF003: Acesso à sala de bate-papo: Usuários participantes, que acessam uma sal
 
 RF004: Inclusão de nome de usuário: Usuários, ao acessarem ou criarem salas de bate-papo, deverão definir o nome de seus usuários, caso já o tenham feito, terão a possibilidade de alterar o descrito.
 
-RF006: Lista de Participantes: Usuários terão a possibilidade de visualizar usuários que estão ou já estiveram conectados à sala. Ainda, deverá ser possível identificar usuários online, ausentes e offline. Ausentes seriam aqueles que não realizam ações na UI em um período de tempo de 3 minutos. Offline seriam aqueles que fecharam a guia da sala.
+RF006: Lista de Participantes: Usuários terão a possibilidade de visualizar usuários que estão ou já estiveram conectados à sala. Ainda, deverá ser possível identificar usuários online, ausentes e offline. Ausentes seriam aqueles que não realizam ações na UI em um período de tempo de 3 minutos. Offline seriam aqueles que fecharam a guia da sala mas em algum momento estiveram presentes.
 
 RF007: Envio de Mensagens: Os usuários podem enviar mensagens de texto que serão visualizadas por todos os participantes da sala.
 
-RF008: Encerrar bate-papo: O usuário administrador da sala terá a possibilidade de encerrar o bate-papo à qualquer momento. Isto iniciará uma contagem de 30 minutos para desconexão dos usuários.
+RF008: Encerrar bate-papo: O usuário administrador da sala terá a possibilidade de encerrar o bate-papo à qualquer momento. Isto iniciará uma contagem de 1 minuto para desconexão dos usuários.
 
 ### Requisitos Não Funcionais
 
-RNF001 Desempenho: Resposta rápida em comunicação e atualização da lista de participantes.
+RNF001 Desempenho: O sistema deve atualizar o chat de todos os usuários em até 10 segundos após o envio da mensagem.
 
 RNF002 Segurança: Implementação de medidas de segurança para proteger contra ataques como XSS e CSRF.
 
-RNF003 Escalabilidade: Capacidade de lidar com um grande número de usuários simultâneos.
+RNF003 Escalabilidade: Capacidade de lidar com um número de até 30 usuários por sala. 
+
+### Regras de Negócio
+
+RN001: O sistema não irá persistir informações de salas e mensagens após o bate-papo ser encerrado.
+
+RN002: O sistema deverá ter o controle de usuários que já acessaram a aplicação por meio de um token ou session cookie armazenado no navegador.
+
+RN003: Caso um usuário acesse uma URL que possua um ID que a aplicação não reconheça, este será redirecionado para a página inicial do site.
+
+RN004: Apenas o administrador tem acesso à funcionalidades de gerenciamento da sala de bate-papo.
 
 ## Observações
 
