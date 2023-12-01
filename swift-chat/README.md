@@ -1,18 +1,21 @@
-## Projeto SwiftChat
+# Projeto SwiftChat
 
 ### Visão Geral do Projeto
-O SwiftChat é um aplicativo de chat ao vivo que permite a comunicação entre múltiplos usuários. Desenvolvido utilizando Angular e Spring Boot, o aplicativo utiliza WebSockets para garantir uma comunicação eficiente e em tempo real.
+O SwiftChat é uma plataforma de chat ao vivo desenvolvida utilizando Angular no front-end e Spring Boot no back-end, proporcionando uma comunicação eficiente e em tempo real entre múltiplos usuários. A aplicação utiliza WebSockets para facilitar a transmissão instantânea de mensagens, proporcionando uma experiência dinâmica e interativa.
 
 ### Problema, Necessidade ou Demanda
-A comunicação eficiente e em tempo real é uma necessidade crescente nos dias de hoje. A demanda por soluções de chat ao vivo, que permitam interações instantâneas entre usuários, motivou o desenvolvimento do SwiftChat. Este software visa atender a essa demanda, proporcionando uma plataforma de chat simples e eficaz.
+A comunicação eficiente e em tempo real é uma necessidade crescente nos dias de hoje. A demanda por soluções de chat ao vivo, que permitam interações instantâneas entre usuários, motivou o desenvolvimento do SwiftChat.
+
+### Objetivo do Projeto
+O objetivo principal do SwiftChat é suprir a crescente demanda por soluções de chat ao vivo, oferecendo uma plataforma simples e eficaz para a comunicação em tempo real entre usuários. A aplicação visa proporcionar uma experiência fluida, permitindo a criação e participação em salas de bate-papo de forma fácil e segura.
 
 ### Proposta de Solução
-O SwiftChat é uma proposta de software que resolve o problema da comunicação em tempo real, proporcionando uma experiência de chat dinâmica e interativa. A solução consiste em um sistema de chat baseado em WebSockets, implementado em Java e Spring Boot.
+O SwiftChat é uma proposta de software que resolve o problema da comunicação em tempo real, proporcionando uma experiência de chat dinâmica e interativa, oferecendo uma aplicação robusta e amigável. A solução consiste em um sistema de chat baseado em WebSockets, implementado em Java e Spring Boot.
 
 ## Composição da Aplicação:
 
 ### Back-End:
-API REST utilizando 
+API REST utilizando Spring Boot.
 
 ### Front-End:
 Desenvolvimento de uma interface de usuário amigável para o chat.
@@ -39,7 +42,7 @@ RF007: Envio de Mensagens: Os usuários podem enviar mensagens de texto que ser�
 
 RF008: Encerrar bate-papo: O usuário administrador da sala terá a possibilidade de encerrar o bate-papo à qualquer momento. Isto iniciará uma contagem de 1 minuto para desconexão dos usuários.
 
-### Requisitos Não Funcionais
+## Requisitos Não Funcionais
 
 RNF001 Desempenho: O sistema deve atualizar o chat de todos os usuários em até 10 segundos após o envio da mensagem.
 
@@ -47,7 +50,7 @@ RNF002 Segurança: Implementação de medidas de segurança para proteger contra
 
 RNF003 Escalabilidade: Capacidade de lidar com um número de até 30 usuários por sala. 
 
-### Regras de Negócio
+## Regras de Negócio
 
 RN001: O sistema não irá persistir informações de salas e mensagens após o bate-papo ser encerrado.
 
