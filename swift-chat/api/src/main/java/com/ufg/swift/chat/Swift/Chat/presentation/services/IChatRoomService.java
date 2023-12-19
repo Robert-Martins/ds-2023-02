@@ -1,0 +1,17 @@
+package com.ufg.swift.chat.Swift.Chat.presentation.services;
+
+import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomDto;
+
+import java.util.UUID;
+
+public interface IChatRoomService {
+
+    ChatRoomDto create(String name, UUID userId);
+
+    ChatRoomDto read(UUID uuid);
+
+    ChatRoomDto update(UUID uuid, String name);
+
+    void delete(UUID id);
+
+}
