@@ -2,6 +2,7 @@ package com.ufg.swift.chat.Swift.Chat.domain.models;
 
 import com.ufg.swift.chat.Swift.Chat.infrastructure.base.BaseEntity;
 import com.ufg.swift.chat.Swift.Chat.infrastructure.vo.enums.UserRoleInChat;
+import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,5 +24,15 @@ public class ChatRoomUser extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @Override
+    public ChatRoomUserDto mapEntityToDto() {
+        ChatRoomUserDto chatRoomUserDto = new ChatRoomUserDto();
+        chatRoomUserDto.setId(this.getId());
+        chatRoomUserDto.setUserRole(this.getUserRole());
+        chatRoomUserDto.setUser(this.getUser().mapEntityToDto());
+        chatRoomUserDto.setChatRoom(this.getChatRoom().mapEntityToDto());
+        return chatRoomUserDto;
+    }
 
 }
