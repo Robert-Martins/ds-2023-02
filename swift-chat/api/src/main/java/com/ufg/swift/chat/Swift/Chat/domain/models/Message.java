@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "swift_message")
 public class Message extends BaseEntity {
 
-    @Column(name = "message")
+    @Column(name = "message", nullable = false)
     private String message;
 
     @OneToOne

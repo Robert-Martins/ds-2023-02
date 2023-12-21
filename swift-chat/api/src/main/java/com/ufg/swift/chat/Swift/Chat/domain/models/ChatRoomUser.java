@@ -14,7 +14,7 @@ import lombok.Setter;
 public class ChatRoomUser extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
+    @Column(name = "user_role", nullable = false, updatable = false)
     private UserRoleInChat userRole;
 
     @ManyToOne

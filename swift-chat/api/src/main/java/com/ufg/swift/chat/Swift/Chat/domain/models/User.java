@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "swift_user")
 public class User extends BaseEntity {
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Override

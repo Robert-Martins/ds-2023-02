@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,17 +16,24 @@ import java.util.stream.Collectors;
 @Table(name = "swift_chat_room")
 public class ChatRoom extends BaseEntity {
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany
-    private Set<Message> messages;
+    @Column(name = "code", nullable = false, unique = true, updatable = false)
+    private String code;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Message> messages = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ChatRoomUser> chatRoomUsers = new HashSet<>();
 
     @Override
     public ChatRoomDto mapEntityToDto() {
         ChatRoomDto chatRoomDto = new ChatRoomDto();
         chatRoomDto.setId(this.getId());
         chatRoomDto.setName(this.getName());
+        chatRoomDto.setCode(this.getCode());
         chatRoomDto.setMessages(
                 this.getMessages().stream()
                         .map(Message::mapEntityToDto)

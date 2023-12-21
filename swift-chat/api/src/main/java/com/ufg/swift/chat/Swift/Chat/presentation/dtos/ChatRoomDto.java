@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,9 @@ import java.util.stream.Collectors;
 public class ChatRoomDto extends EntityDto<ChatRoom> {
 
     private String name;
+    private String code;
 
-    private Set<MessageDto> messages;
+    private Set<MessageDto> messages = new HashSet<>();
 
     private LocalDateTime createdAt;
 
@@ -23,6 +25,7 @@ public class ChatRoomDto extends EntityDto<ChatRoom> {
     public ChatRoom mapDtoToEntity() {
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.setName(this.getName());
+        chatRoom.setCode(this.getCode());
         chatRoom.setMessages(
                 this.messages.stream()
                         .map(MessageDto::mapDtoToEntity)
