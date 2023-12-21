@@ -11,7 +11,7 @@ public enum UserRoleInChat {
         this.description = description;
     }
 
-    private String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
