@@ -1,12 +1,7 @@
 package com.ufg.swift.chat.Swift.Chat.infrastructure.base;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,11 +11,11 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public abstract class BaseEntity {
+@MappedSuperclass
+public class BaseEntity extends Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
     private UUID id;
 
     @UpdateTimestamp
@@ -31,6 +26,8 @@ public abstract class BaseEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public abstract EntityDto<? extends BaseEntity> mapEntityToDto();
-
+    @Override
+    public EntityDto<? extends Entity> mapEntityToDto() {
+        return null;
+    }
 }

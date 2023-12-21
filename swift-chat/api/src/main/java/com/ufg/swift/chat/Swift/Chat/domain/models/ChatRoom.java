@@ -2,9 +2,7 @@ package com.ufg.swift.chat.Swift.Chat.domain.models;
 
 import com.ufg.swift.chat.Swift.Chat.infrastructure.base.BaseEntity;
 import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +15,7 @@ import java.util.stream.Collectors;
 @Table(name = "swift_chat_room")
 public class ChatRoom extends BaseEntity {
 
+    @Column(name = "name")
     private String name;
 
     @OneToMany
