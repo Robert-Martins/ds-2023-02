@@ -5,6 +5,8 @@ import com.ufg.swift.chat.Swift.Chat.infrastructure.base.EntityDto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public class UserDto extends EntityDto<User> {
@@ -18,5 +20,5 @@ public class UserDto extends EntityDto<User> {
         user.setName(this.getName());
         return user;
     }
-
 }
+

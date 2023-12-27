@@ -10,6 +10,5 @@ public interface IUserService {
 
     UserDto read(UUID id);
 
-    void update(String name);
-
+    void update(UUID id, String name);
 }
