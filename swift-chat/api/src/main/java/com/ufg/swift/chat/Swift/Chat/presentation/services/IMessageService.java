@@ -1,11 +1,9 @@
 package com.ufg.swift.chat.Swift.Chat.presentation.services;
 
-import com.ufg.swift.chat.Swift.Chat.presentation.dtos.MessageDto;
-
-import java.util.UUID;
+import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
 
 public interface IMessageService {
 
-    MessageDto create(String message, UUID authorId);
+    void send(String message, ChatRoomUserDto chatRoomUserDto);
 
 }

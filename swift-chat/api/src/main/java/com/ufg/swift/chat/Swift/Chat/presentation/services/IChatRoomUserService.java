@@ -1,17 +1,23 @@
 package com.ufg.swift.chat.Swift.Chat.presentation.services;
 
-import com.ufg.swift.chat.Swift.Chat.domain.models.ChatRoom;
-import com.ufg.swift.chat.Swift.Chat.domain.models.User;
-import com.ufg.swift.chat.Swift.Chat.infrastructure.vo.enums.UserRoleInChat;
 import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
 
-import java.util.Set;
 import java.util.UUID;
 
 public interface IChatRoomUserService {
 
-    ChatRoomUserDto create(ChatRoom chatRoom, User user, UserRoleInChat userRoleInChat);
+    ChatRoomUserDto create(String name, UUID userId);
 
-    Set<ChatRoomUserDto> findAllByChatRoomId(UUID chatRoomId);
+    ChatRoomUserDto read(UUID chatRoomId, UUID userId);
+
+    void update(String name, UUID chatRoomId, UUID userId);
+
+    void close(UUID chatRoomId, UUID userId);
+
+    UUID getIdByCode(String code);
+
+    ChatRoomUserDto join(UUID chatRoomId, UUID userId);
+
+    void left(UUID chatRoomId, UUID userId);
 
 }
