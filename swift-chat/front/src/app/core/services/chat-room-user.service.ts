@@ -13,11 +13,11 @@ export class ChatRoomUserService {
 
   private readonly CODE_PATH: string = 'code';
 
-  private readonly CLOSE_PATH: string = '/close';
+  private readonly CLOSE_PATH: string = 'close';
 
-  private readonly JOIN_PATH: string = '/join';
+  private readonly JOIN_PATH: string = 'join';
 
-  private readonly LEFT_PATH: string = '/left';
+  private readonly LEFT_PATH: string = 'left';
 
   private url: string = '';
 
