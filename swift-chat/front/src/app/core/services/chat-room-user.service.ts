@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
 import { ChatRoomUser } from '../models/chat-room-user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,6 @@ import { ChatRoomUser } from '../models/chat-room-user.model';
 export class ChatRoomUserService {
 
   private readonly CHAT_ROOM_USER_PATH: string = 'chat-room-user';
-
-  private readonly CODE_PATH: string = 'code';
 
   private readonly CLOSE_PATH: string = 'close';
 
@@ -36,23 +34,23 @@ export class ChatRoomUserService {
   }
 
   public update(name: string, chatRoomId: string, userId: string): Observable<void> {
-    return this.http.put<void>(`${this.url}/${chatRoomId}/${name}/${userId ? `?userId=${userId}`: ''}`, null);
+    return this.http.put<void>(`${this.url}/${chatRoomId}/${name}${userId ? `?userId=${userId}`: ''}`, null);
   }
 
   public close(chatRoomId: string, userId: string): Observable<void> {
-    return this.http.post<void>(`${this.url}/${this.CLOSE_PATH}/${chatRoomId}/$${userId ? `?userId=${userId}`: ''}`, null);
-  }
-
-  public getIdByCode(code: string): Observable<string> {
-    return this.http.get<string>(`${this.url}/${this.CODE_PATH}/${code}`);
+    return this.http.post<void>(`${this.url}/${this.CLOSE_PATH}/${chatRoomId}${userId ? `?userId=${userId}`: ''}`, null);
   }
 
   public join(chatRoomId: string, userId: string): Observable<ChatRoomUser> {
-    return this.http.post<ChatRoomUser>(`${this.url}/${this.JOIN_PATH}/${chatRoomId}/$${userId ? `?userId=${userId}`: ''}`, null);
+    return this.http.post<ChatRoomUser>(`${this.url}/${this.JOIN_PATH}/${chatRoomId}${userId ? `?userId=${userId}`: ''}`, null);
   }
 
   public left(chatRoomId: string, userId: string): Observable<void> {
-    return this.http.post<void>(`${this.url}/${this.LEFT_PATH}/${chatRoomId}/$${userId ? `?userId=${userId}`: ''}`, null);
+    return this.http.post<void>(`${this.url}/${this.LEFT_PATH}/${chatRoomId}${userId ? `?userId=${userId}`: ''}`, null);
+  }
+
+  public getByUserId(userId: string): Observable<ChatRoomUser[]> {
+    return this.http.get<ChatRoomUser[]>(`${this.url}${userId ? `?userId=${userId}`: ''}`);
   }
 
 }

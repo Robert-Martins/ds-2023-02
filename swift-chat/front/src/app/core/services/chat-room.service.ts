@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ChatRoom } from '../models/chat-room.model';
 
 @Injectable({
@@ -9,7 +9,13 @@ import { ChatRoom } from '../models/chat-room.model';
 })
 export class ChatRoomService {
 
-  private readonly CHAT_ROOM_PATH: string = '/chat-room';
+  private readonly CHAT_ROOM_PATH: string = 'chat-room';
+
+  private readonly CODE_PATH: string = 'code';
+
+  private readonly CHAT_ROOM_ID_KEY: string = 'chat-room-id';
+
+  private chatRoomId: BehaviorSubject<string> = new BehaviorSubject(null);
 
   private url: string;
 
@@ -21,6 +27,24 @@ export class ChatRoomService {
 
   public read(id: string): Observable<ChatRoom> {
     return this.http.get<ChatRoom>(`${this.url}/${id}`);
+  }
+
+  public getIdByCode(code: string): Observable<string> {
+    return this.http.get<string>(`${this.url}/${this.CODE_PATH}/${code}`);
+  }
+
+  public persistChatRoomId(chatRoomId: string): void {
+    localStorage.setItem(this.CHAT_ROOM_ID_KEY, chatRoomId);
+  }
+
+  public retrieveChatRoomId(): void {
+    const id = localStorage.getItem(this.CHAT_ROOM_ID_KEY);
+    if(id)
+      this.chatRoomId.next(id);
+  }
+
+  public clearChatRoomId(): void {
+    localStorage.removeItem(this.CHAT_ROOM_ID_KEY);
   }
 
 }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MessageService {
 
-  private readonly MESSAGE_PATH: string = '/message';
+  private readonly MESSAGE_PATH: string = 'message';
 
   private url: string;
 
