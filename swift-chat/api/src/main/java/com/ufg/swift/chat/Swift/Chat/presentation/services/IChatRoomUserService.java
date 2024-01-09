@@ -2,6 +2,7 @@ package com.ufg.swift.chat.Swift.Chat.presentation.services;
 
 import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface IChatRoomUserService {
@@ -14,10 +15,10 @@ public interface IChatRoomUserService {
 
     void close(UUID chatRoomId, UUID userId);
 
-    UUID getIdByCode(String code);
-
     ChatRoomUserDto join(UUID chatRoomId, UUID userId);
 
     void left(UUID chatRoomId, UUID userId);
+
+    List<ChatRoomUserDto> getUserById(UUID userId);
 
 }

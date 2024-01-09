@@ -10,6 +10,8 @@ public interface IChatRoomService {
 
     ChatRoomDto read(UUID uuid);
 
+    ChatRoomDto readByCode(String code);
+
     ChatRoomDto update(UUID uuid, String name);
 
     void delete(UUID id);
