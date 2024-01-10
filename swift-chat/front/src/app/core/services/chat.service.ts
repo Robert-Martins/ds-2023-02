@@ -19,9 +19,9 @@ export class ChatService {
 
   private events: BehaviorSubject<ChatEvent[]> = new BehaviorSubject([]);
 
-  private readonly SWIFT_CHAT_SOCKET_PATH = "swift-chat-socket"
+  private readonly SWIFT_CHAT_SOCKET_PATH = "chat"
 
-  private readonly CHAT_ROOM_TOPIC_PATH = "/chat-room"
+  private readonly CHAT_ROOM_TOPIC_PATH = "/room"
 
   constructor() {
     this.subscription = null;
