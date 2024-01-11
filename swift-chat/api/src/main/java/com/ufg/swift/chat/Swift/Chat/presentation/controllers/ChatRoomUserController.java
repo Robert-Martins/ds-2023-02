@@ -76,7 +76,7 @@ public class ChatRoomUserController {
     public List<ChatRoomUserDto> getUserById(
             @RequestParam(name = "userId") String userId
     ) {
-        return this.chatRoomUserService.getUserById(UUID.fromString(userId));
+        return this.chatRoomUserService.getByUserId(UUID.fromString(userId));
     }
 
 }

@@ -19,6 +19,6 @@ public interface IChatRoomUserService {
 
     void left(UUID chatRoomId, UUID userId);
 
-    List<ChatRoomUserDto> getUserById(UUID userId);
+    List<ChatRoomUserDto> getByUserId(UUID userId);
 
 }

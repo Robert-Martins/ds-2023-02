@@ -2,10 +2,12 @@ package com.ufg.swift.chat.Swift.Chat.domain.services;
 
 import com.ufg.swift.chat.Swift.Chat.domain.repositories.ChatRoomUserRepository;
 import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
+import com.ufg.swift.chat.Swift.Chat.presentation.services.IChatRoomService;
 import com.ufg.swift.chat.Swift.Chat.presentation.services.IChatRoomUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -13,6 +15,8 @@ import java.util.UUID;
 public class ChatRoomUserService implements IChatRoomUserService {
 
     private final ChatRoomUserRepository chatRoomUserRepository;
+
+    private final IChatRoomService chatRoomService;
 
     @Override
     public ChatRoomUserDto create(String name, UUID userId) {
@@ -42,5 +46,10 @@ public class ChatRoomUserService implements IChatRoomUserService {
     @Override
     public void left(UUID chatRoomId, UUID userId) {
 
+    }
+
+    @Override
+    public List<ChatRoomUserDto> getByUserId(UUID userId) {
+        return null;
     }
 }
