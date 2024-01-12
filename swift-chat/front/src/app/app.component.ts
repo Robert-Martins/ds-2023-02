@@ -6,13 +6,6 @@ import { CodeComponent } from './screens/code/code.component';
 import { HomeComponent } from './screens/home/home.component';
 import { LobbyComponent } from './screens/lobby/lobby.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'code', component: CodeComponent },
-  { path: 'lobby/:id', component: LobbyComponent },
-  { path: 'chat/:id', component: ChatComponent },
-];
-
 @Component({
   selector: 'app-root',
   standalone: true,
