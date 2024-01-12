@@ -1,13 +1,12 @@
 package com.ufg.swift.chat.Swift.Chat.presentation.services;
 
 import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomDto;
-import com.ufg.swift.chat.Swift.Chat.presentation.dtos.ChatRoomUserDto;
 
 import java.util.UUID;
 
 public interface IChatRoomService {
 
-    ChatRoomDto create(String name, ChatRoomUserDto chatRoomUserDto);
+    ChatRoomDto create(String name);
 
     ChatRoomDto read(UUID uuid);
 

@@ -24,11 +24,10 @@ public class ChatRoomService implements IChatRoomService {
     private static final String CHAT_ROOM_DONT_EXISTS_BY_CODE = "Chat de Código %s não existe";
 
     @Override
-    public ChatRoomDto create(String name, ChatRoomUserDto chatRoomUserDto) {
+    public ChatRoomDto create(String name) {
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.setName(name);
         chatRoom.setCode(this.generateRoomUniqueCode());
-        chatRoom.getChatRoomUsers().add(chatRoomUserDto.mapDtoToEntity());
         ChatRoom savedChatRoom = this.chatRoomRepository.save(chatRoom);
         return savedChatRoom.mapEntityToDto();
     }
