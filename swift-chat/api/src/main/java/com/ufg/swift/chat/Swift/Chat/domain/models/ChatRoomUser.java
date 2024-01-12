@@ -17,11 +17,11 @@ public class ChatRoomUser extends BaseEntity {
     @Column(name = "user_role", nullable = false, updatable = false)
     private UserRoleInChat userRole;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_room_id", referencedColumnName = "id")
     private ChatRoom chatRoom;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

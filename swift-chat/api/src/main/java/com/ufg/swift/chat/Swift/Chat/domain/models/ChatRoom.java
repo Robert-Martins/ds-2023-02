@@ -22,7 +22,7 @@ public class ChatRoom extends BaseEntity {
     @Column(name = "code", nullable = false, unique = true, updatable = false)
     private String code;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messages = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
