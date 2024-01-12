@@ -89,6 +89,9 @@ RN002: O sistema deverá ter o controle de usuários que já acessaram a aplica�
 
 RN003: Caso um usuário acesse uma URL que possua um ID que a aplicação não reconheça, este será redirecionado para a página inicial do site.
 
+## Protótipo
+
+https://www.figma.com/file/2orIQaJUFqQR3p4CP7Gi7y/SwiftChat?node-id=8%3A3&mode=dev
 RN004: Apenas o administrador tem acesso à funcionalidades de gerenciamento da sala de bate-papo.
 
 ## Observações
