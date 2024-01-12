@@ -1,0 +1,19 @@
+.card {
+    width: 153px;
+    height: 36px;
+    padding: 10px;
+    border-radius: 8px;
+    gap: 10px; 
+    background-color: #845EF7; 
+    display: flex; 
+    align-items: center; 
+  
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #F8F9FA; 
+  }
+  
