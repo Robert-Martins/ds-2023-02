@@ -1,21 +1,17 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header">
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label for="name">Seu nome</label>
-              <input type="text" class="form-control" id="name" [(ngModel)]="name">
-            </div>
-            <div class="form-group">
-              <button type="button" class="card" (click)="createRoom()">Criar sala</button>
-              <button type="button" class="card" (click)="joinRoom()">Entrar em uma sala</button>
-            </div>
-          </div>
-        </div>
+<div class="col-md-6 offset-md-3">
+  <div class="card-body">
+      <div class="form-group">
+          <label class="card-title" for="name">Meu nome é</label>
+          <br><br/>
+          <input type="text" class="input" id="name" [(ngModel)]="name" placeholder="Insira seu nome" />
+          <br><br/>
+          <label class="card-title" for="action">E eu vou</label>
+          <br><br/>
       </div>
-    </div>
+      <div class="form-group">
+          <button type="button" class="card" (click)="createRoom()">Criar sala</button>
+          <br />
+          <button type="button" class="card" (click)="joinRoom()">Entrar em uma sala</button>
+      </div>
   </div>
-  
+</div>

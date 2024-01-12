@@ -1,19 +1,45 @@
 .card {
-    width: 153px;
-    height: 36px;
-    padding: 10px;
-    border-radius: 8px;
-    gap: 10px; 
-    background-color: #845EF7; 
-    display: flex; 
-    align-items: center; 
-  
-    font-family: Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #F8F9FA; 
-  }
-  
+  width: 153px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #845EF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #F8F9FA;
+}
+
+.input {
+  width: 111px;
+  height: 16px;
+  background-color: #F8F9FA;
+  margin-bottom: 7px;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #D0BFFF;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-title {
+  font-family: Geometry Soft Pro, sans-serif;
+  /* Ensure this font is imported */
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #212529;
+}
