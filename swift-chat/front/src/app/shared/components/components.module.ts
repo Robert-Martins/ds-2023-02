@@ -5,6 +5,7 @@ import { HeaderModule } from './header/header.module';
 import { InputsModule } from './inputs/inputs.module';
 import { ListsModule } from './lists/lists.module';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { ContainersModule } from './containers/containers.module';
 
 
 
@@ -13,6 +14,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
   imports: [
     CommonModule,
     CardsModule,
+    ContainersModule,
     HeaderModule,
     InputsModule,
     ListsModule,
@@ -20,6 +22,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
   ],
   exports: [
     CardsModule,
+    ContainersModule,
     HeaderModule,
     InputsModule,
     ListsModule,
