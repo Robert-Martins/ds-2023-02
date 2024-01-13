@@ -1,0 +1,15 @@
+form {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    padding: 4px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--purple-secondary);
+    border-bottom: 1px solid var(--gray-light);
+}

@@ -1,1 +1,8 @@
-<p>code-input works!</p>
+<form>
+    <input 
+        #input 
+        type="text" 
+        *ngFor="let control of code.controls; index as i;" 
+        (keyup)="onChange($event, control.value, i)"
+    />
+</form>
