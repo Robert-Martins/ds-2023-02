@@ -19,3 +19,35 @@ html, body {
     --gray-light: #CED4DA;
     --gray-lighter: #F8F9FA;
 }
+
+button.swift-button{
+    width: 153px;
+    height: 36px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #845EF7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #F8F9FA;
+}
+/* TODO icons voltar, perfil, etc */
+
+button.swift-button.icon{
+}
+
+.card-title {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #212529;
+  }
