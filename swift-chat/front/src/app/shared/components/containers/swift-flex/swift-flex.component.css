@@ -1,0 +1,9 @@
+div.swift-flex {
+    width: 100%;
+    display: flex;
+    flex-basis: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
