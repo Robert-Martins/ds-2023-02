@@ -1,0 +1,19 @@
+export const isEnterKey = (key: string): boolean => {
+    return key === 'Enter';
+}
+
+export const isTabKey = (key: string): boolean => {
+    return key === 'Tab';
+}
+
+export const isArrowKey = (key: string): boolean => {
+    return key.includes('Arrow');
+}
+
+export const isArrowForward = (key: string): boolean => {
+    return key.includes('Up') || key.includes('Left');
+}
+
+export const isArrowPrevious = (key: string): boolean => {
+    return key.includes('Down') || key.includes('Right');
+}
