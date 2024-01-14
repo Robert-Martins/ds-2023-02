@@ -1,0 +1,25 @@
+div.qr-code-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 101;
+}
+
+div.qr-code-wrapper > div.qr-code-image {
+    width: 332px;
+    height: 332px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+}
+
+div.qr-code-wrapper > div.qr-code-image > h6 {
+    color: var(--gray-dark);
+}

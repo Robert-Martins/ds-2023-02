@@ -1,1 +1,10 @@
-<p>qrcode works!</p>
+<div 
+    class="qr-code-wrapper" 
+    *ngIf="qrCode$ | async as qrCode" 
+    (click)="$event.stopPropagation(); onClickClose();"
+>
+    <div class="qr-code-image" (click)="$event.stopPropagation()" >
+        <img [src]="qrCode" alt="QR Code para acesso ao Chat" />
+    </div>
+    <h6>Selecione a área externa ao QR Code para fechá-lo</h6>
+</div>
