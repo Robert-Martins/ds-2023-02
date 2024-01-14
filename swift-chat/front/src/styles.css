@@ -12,12 +12,18 @@ html, body {
 
 :root {
     --purple-primary: #845EF7;
-    --purple-secondary: #5F3DC4;
-    --purple-tertiary: #D0BFFF;
+    --purple-secondary: #5628EE;
+    --purple-tertiary: #5F3DC4;
+    --purple-quaternary: #D0BFFF;
 
     --gray-darker: #212529;
+    --gray-dark: #2F3545;
     --gray-light: #CED4DA;
     --gray-lighter: #F8F9FA;
+}
+
+body.overflow-hidden {
+    overflow-y: hidden;
 }
 
 button.swift-button{
