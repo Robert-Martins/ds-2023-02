@@ -1,0 +1,14 @@
+<div *ngIf="open$ | async as open" class="swift-dialog-container" (click)="onClickDialogWrapper()">
+    <div class="swift-dialog-body" (click)="$event.stopPropagation()">
+        <ng-container
+            *ngIf="dialogComponentData$ | async as dialogComponentData"
+        >
+            <ng-container
+            *ngComponentOutlet="
+                dialogComponentData.component;
+                inputs: dialogComponentData.inputs;
+            "
+            ></ng-container>
+        </ng-container>
+    </div>
+</div>

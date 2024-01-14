@@ -1,0 +1,22 @@
+div.swift-dialog-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+div.swift-dialog-container > div.swift-dialog-body {
+    width: clamp(320px, 40%, 92%);
+    height: clamp(180px, 20%, 92%);
+    padding: 32px 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 8px;
+}
