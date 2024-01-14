@@ -1,0 +1,8 @@
+<swift-flex mainAxis="column" justify="center" align="center" gap="21">
+    <span *ngIf="iconClass" [class]="iconClass"></span>
+    <h2 *ngIf="confirmationText$ | async as text">{{ text }}</h2>
+    <swift-flex justify="space-between" align="center">
+        <button swiftButton (click)="onClickOption(true)" type="button">Sim</button>
+        <button swiftButton [swiftButtonGhost]="true" (click)="onClickOption(false)" type="button">Não</button>
+    </swift-flex>
+</swift-flex>

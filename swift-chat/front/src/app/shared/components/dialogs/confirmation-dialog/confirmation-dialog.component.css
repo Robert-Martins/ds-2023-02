@@ -1,0 +1,8 @@
+span {
+    width: 24px;
+    height: 24px;
+}
+
+span.leave {
+    background-image: url('./../../../../../assets/icons/Logout_Purple.png');
+}
