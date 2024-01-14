@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
-type alignments = 'center' | 'space-between' | 'flex-start' | 'flex-end';
+type Alignments = 'center' | 'space-between' | 'flex-start' | 'flex-end';
 
-type axis = 'column' | 'row';
+type Axis = 'column' | 'row';
 
 @Component({
   selector: 'swift-flex',
@@ -19,16 +19,16 @@ export class SwiftFlexComponent implements AfterViewInit {
   private swiftFlex: ElementRef<HTMLElement>;
 
   @Input()
-  public mainAxis: axis = 'row';
+  public mainAxis: Axis = 'row';
 
   @Input()
-  public gap: string = '8';
+  public gap: string = '0';
 
   @Input()
-  public justify: alignments = 'flex-start';
+  public justify: Alignments = 'flex-start';
 
   @Input()
-  public align: alignments = 'flex-start';
+  public align: Alignments = 'flex-start';
 
   ngAfterViewInit(): void {
     this.swiftFlex.nativeElement.style.flexDirection = this.mainAxis;

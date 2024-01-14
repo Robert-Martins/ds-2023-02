@@ -22,6 +22,16 @@ html, body {
     --gray-lighter: #F8F9FA;
 }
 
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
 body.overflow-hidden {
     overflow-y: hidden;
 }

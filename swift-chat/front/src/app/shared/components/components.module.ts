@@ -21,7 +21,6 @@ import { DialogsModule } from './dialogs/dialogs.module';
     CommonModule,
     CardsModule,
     ContainersModule,
-    DialogsModule,
     HeaderModule,
     InputsModule,
     ListsModule,
@@ -30,7 +29,6 @@ import { DialogsModule } from './dialogs/dialogs.module';
   exports: [
     CardsModule,
     ContainersModule,
-    DialogsModule,
     HeaderModule,
     InputsModule,
     ListsModule,

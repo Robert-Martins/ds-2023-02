@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Snack } from './snackbar.types';
 import { BehaviorSubject } from 'rxjs';
 import { SnackbarService } from './snackbar.service';
@@ -34,7 +34,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       <p>{{snack?.message}}</p>
     </div>
   `,
-  styleUrl: './snackbar.component.css'
+  styleUrl: './snackbar.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SnackbarComponent {
 
