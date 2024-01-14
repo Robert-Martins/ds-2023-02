@@ -1,17 +1,18 @@
 <swift-flex mainAxis="column" justify="center" align="center" gap="16">
     <h2>Mais pessoa podem entrar na conversa via</h2>
-    <swift-flex mainAxis="row" justify="space-between" align="center" gap="12">
-        <div class="share-info">
-            <span class="qr-code"></span>
+    <swift-flex *ngIf="chatRoomUrl$ | async as chatRoomUrl" mainAxis="row" justify="space-between" align="flex-end" gap="12">
+        <div (click)="qrCodeUrl$.next(chatRoomUrl)" class="share-info">
+            <span class="qr-code default-bg"></span>
             <p>QR Code</p>
         </div>
-        <div class="share-info">
-            <span class="code"></span>
+        <div *ngIf="chatRoomCode$ | async as chatRoomCode" [copyToClipboard]="chatRoomCode" (copied)="onCopy()" class="share-info">
+            <span class="code">{{chatRoomCode}}</span>
             <p>Swift Code</p>
         </div>
-        <div class="share-info">
-            <span class="link"></span>
+        <div [copyToClipboard]="chatRoomUrl" (copied)="onCopy()" class="share-info">
+            <span class="link default-bg"></span>
             <p>Link do Chat</p>
         </div>
     </swift-flex>
 </swift-flex>
+<swift-qrcode [url$]="qrCodeUrl$"></swift-qrcode>

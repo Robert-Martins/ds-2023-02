@@ -1,0 +1,29 @@
+div.share-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+div.share-info > span.qr-code, span.link {
+    width: 48px;
+    height: 48px;
+}
+
+div.share-info > span.qr-code {
+}
+
+div.share-info > span.code {
+    color: var(--purple-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+div.share-info > span.link {
+}
+
+div.share-info > p {
+    font-size: 0.875rem;
+    font-weight: 500;
+}

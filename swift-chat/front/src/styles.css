@@ -32,6 +32,17 @@ h2 {
     font-weight: 700;
 }
 
+h6 {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.default-bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 body.overflow-hidden {
     overflow-y: hidden;
 }
