@@ -21,6 +21,9 @@ import { DirectivesModule } from '../../directives/directives.module';
     NgComponentOutlet,
     ContainersModule,
     DirectivesModule
+  ],
+  exports: [
+    DialogComponent
   ]
 })
 export class DialogsModule { }

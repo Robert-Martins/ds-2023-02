@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DialogComponentData } from './dialog.types';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'swift-dialog',
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
@@ -18,6 +18,7 @@ export class DialogComponent {
     private dialogsService: DialogsService
   ) {
     this.open$ = this.dialogsService.open$;
+    this.dialogComponentData$ = this.dialogsService.dialogComponentData$;
   }
 
   public onClickDialogWrapper(): void {
