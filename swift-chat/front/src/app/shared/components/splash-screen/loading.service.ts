@@ -1,4 +1,4 @@
-import { Injectable, Renderer2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,11 +10,14 @@ export class LoadingService {
 
   private htmlBody: HTMLBodyElement;
 
+  private renderer: Renderer2;
+
   private readonly overflowHiddenClass = 'overflow-hidden';
 
   constructor(
-    private renderer: Renderer2
+    private rendererFactory: RendererFactory2
   ) { 
+    this.renderer = this.rendererFactory.createRenderer(null, null);
     this.htmlBody = document.querySelector('body');
   }
 

@@ -13,13 +13,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         state(
           'down', 
           style({
-            top: '120%'
+            top: '120%',
+            opacity: '0.1'
           })
         ),
         state(
           'up',
           style({
-            top: '80%'
+            top: '88%',
+            opacity: '1.0'
           })
         ),
         transition(
@@ -30,7 +32,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     )
   ],
   template: `
-    <div *ngIf="snack$ | async as snack" [@popUp]="isUp ? 'up' : 'down'" class="snackbar">
+    <div *ngIf="snack$ | async as snack" [@popUp]="(isUp$ | async) ? 'up' : 'down'" class="snackbar">
       <p>{{snack?.message}}</p>
     </div>
   `,
@@ -39,7 +41,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class SnackbarComponent {
 
-  public isUp: boolean = false;
+  public isUp$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public snack$: BehaviorSubject<Snack>;
 
@@ -53,9 +55,9 @@ export class SnackbarComponent {
   }
 
   private performAnimation = (): void => {
-    this.isUp = false;
+    this.isUp$.next(true);
     setTimeout(
-      () => this.isUp = false,
+      () => this.isUp$.next(false),
       this.animationTimeout
     );
   }

@@ -15,10 +15,6 @@ export class SnackbarService {
 
   private snackTimeout: number = 6200;
 
-  constructor() { 
-    this.snack$.subscribe(this.onSnackMessage);
-  }
-
   public success(message: string): void {
     this.processSnackMessage(new Snack(message, 'SUCCESS'));
   }
@@ -33,15 +29,8 @@ export class SnackbarService {
 
   private processSnackMessage(snack: Snack): void {
     this.snacks.push(snack);
-    if(this.snacks.length === 0)
+    if(this.snacks.length === 1)
       this.handleSnackAssign(snack);
-  }
-
-  private onSnackMessage(): void {
-    setTimeout(
-      this.handleSnackMessageFlow,
-      this.snackTimeout
-    );
   }
 
   private handleSnackMessageFlow = (): void => {
@@ -55,6 +44,10 @@ export class SnackbarService {
     this.snack$.next(snack);
     if(this.onSnackAssign)
       this.onSnackAssign();
+    setTimeout(
+      this.handleSnackMessageFlow,
+      this.snackTimeout
+    );
   }
 
 }

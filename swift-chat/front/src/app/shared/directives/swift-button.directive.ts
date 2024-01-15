@@ -18,7 +18,7 @@ export class SwiftButtonDirective {
     private renderer: Renderer2,
     private elementRef: ElementRef
   ) { 
-    this.renderer.addClass(this.elementRef, this.buildClasses());
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'class', this.buildClasses().trim());
   }
 
   private buildClasses(): string {

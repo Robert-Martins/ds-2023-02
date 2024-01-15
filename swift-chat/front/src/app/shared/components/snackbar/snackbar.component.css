@@ -1,8 +1,9 @@
 div.snackbar {
-    max-width: 90%;
+    width: clamp(120px, 90%, 320px);
     max-height: 20%;
     padding: 1rem 1.5rem;
-    position: absolute;
+    position: fixed;
+    top: 120%;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--purple-tertiary);
