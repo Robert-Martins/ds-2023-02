@@ -1,18 +1,10 @@
-
-<div class="col">
-  <div class="card-body">
-      <div class="form-group">
-          <label class="card-title" for="name">Meu nome é</label>
-          <br><br/>
-          <input type="text" class="input" id="name" [(ngModel)]="name" placeholder="Insira seu nome" />
-          <br><br/>
-          <label class="card-title" for="action">E eu vou</label>
-          <br><br/>
-      </div>
-      <div class="form-group">
-          <button swiftButton type="button" (click)="createRoom()">Criar sala</button>
-          <br />
-          <button swiftButton type="button" (click)="joinRoom()">Entrar em uma sala</button>
-      </div>
-  </div>
-</div>
+<swift-container>
+    <swift-flex mainAxis="column" justify="center" align="center" gap="12">
+        <h1>Meu nome é</h1>
+        <h1>e eu vou</h1>
+        <swift-flex mainAxis="column" justify="center" align="center" gap="8">
+            <a swiftButton routerLink="/chat/1">Criar uma sala</a>
+            <a swiftButton routerLink="/code">Entrar em uma sala</a>
+        </swift-flex>
+    </swift-flex>
+</swift-container>
