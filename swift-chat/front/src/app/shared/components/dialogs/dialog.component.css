@@ -18,5 +18,5 @@ div.swift-dialog-container > div.swift-dialog-body {
     justify-content: center;
     align-items: center;
     background-color: white;
-    border: 8px;
+    border-radius: 8px;
 }
