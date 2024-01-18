@@ -1,15 +1,31 @@
 form {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-    justify-content: center;
-    align-items: center;
 }
 
 form input {
+    width: 100%;
     padding: 4px;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
+    text-align: center;
     color: var(--purple-secondary);
-    border-bottom: 1px solid var(--gray-light);
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid var(--gray-light);
+    transition: 0.2s all linear;
+}
+
+form input:hover {
+    color: var(--purple-quaternary);
+    border-bottom: 2px solid var(--purple-quaternary);
+    transition: 0.2s all linear;
+}
+
+form input:focus {
+    color: var(--purple-primary);
+    border-bottom: 2px solid var(--purple-primary);
+    transition: 0.2s all linear;
 }

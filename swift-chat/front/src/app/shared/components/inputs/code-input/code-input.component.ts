@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
-import { isEnterKey, isArrowForward, isArrowKey, isArrowPrevious, isTabKey } from '../../../../core/utils/keyboard.utils';
+import { Component, ElementRef, EventEmitter, Output, QueryList, ViewChildren } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { isEnterKey, isArrowForward, isArrowKey, isArrowPrevious, isTabKey, isSpaceKey } from '../../../../core/utils/keyboard.utils';
 
 @Component({
   selector: 'code-input',
@@ -14,7 +14,7 @@ export class CodeInputComponent {
   public readonly codeLength: number = 6;
 
   @ViewChildren('input')
-  private inputs: QueryList<HTMLInputElement>;
+  private inputs: QueryList<ElementRef>;
 
   @Output()
   public onSubmit: EventEmitter<string> = new EventEmitter<string>();
@@ -25,41 +25,48 @@ export class CodeInputComponent {
     this.buildCodeForm();
   }
 
-  public onChange($event: KeyboardEvent, value: string, index: number): void {
-    this.handleKeyboardEvent($event.key, value, index);
+  public onChange($event: KeyboardEvent, index: number): void {
+    this.handleKeyboardEvent($event.key, index);
+  }
+
+  public resolveControl(formControl: AbstractControl): FormControl {
+    return formControl as FormControl;
   }
 
   private submit(): void {
-    this.onSubmit.emit(
-      this.code.controls
-        .map(control => control.value)
-        .join('')
-    );
+    this.inputs.forEach(input => input.nativeElement.blur());
+    const fullcode: string = this.code.controls
+                          .map(control => control.value)
+                          .join('');
+                          console.log(fullcode)
+    this.onSubmit.emit(fullcode);
   }
 
   private handleFocusChange(index: number, val: number): void {
     let newIndex = index + val;
     let codeLength = this.codeLength;
-    if(newIndex > codeLength)
+    if(newIndex >= codeLength)
       newIndex = 0;
-    else if(newIndex < codeLength)
-      newIndex = codeLength;
+    else if(newIndex < 0)
+      newIndex = codeLength - 1;
     this.changeFocus(newIndex);
   }
 
   private changeFocus(index: number): void {
-    const input: HTMLInputElement = this.inputs.get(index);
+    const input: ElementRef = this.inputs.get(index);
     if(input)
-      input.focus();
+      input.nativeElement.select();
   }
 
-  private handleKeyboardEvent(key: string, value: string, index: number): void {
+  private handleKeyboardEvent(key: string, index: number): void {
     if(this.isActionKey(key)) 
       this.onActionKeyPress(key, index);
     else if(isEnterKey(key))
       this.submit();
+    else if(isSpaceKey(key))
+      return;
     else 
-      this.onValueChanges(value, index);
+      this.onValueChanges(index);
   }
 
   private onActionKeyPress(key: string, index: number): void {
@@ -68,24 +75,21 @@ export class CodeInputComponent {
       indexSum = 1;
     else if(isArrowPrevious(key))
       indexSum = -1;
-    if(indexSum !== 0)
-      this.handleFocusChange(index, indexSum);
+    this.handleFocusChange(index, indexSum);
   }
 
-  private onValueChanges(value: string, index: number): void {
+  private onValueChanges(index: number): void {
+    const value = this.code.controls.at(index).value;
     let indexSum = value !== '' ? 1 : 0;
-    if(index === this.codeLength)
+    if(index === this.codeLength - 1)
       this.submit();
     else 
       this.handleFocusChange(index, indexSum);
   }
 
   private buildCodeForm(): void {
-    this.code = this.fb.array(
-      [
-        new Array(this.codeLength).fill('')
-      ]
-    );
+    const controls: FormControl[] = new Array(this.codeLength).fill('').map(val => this.fb.control(val));
+    this.code = this.fb.array(controls);
   }
 
   private isActionKey(key: string): boolean {
