@@ -64,7 +64,7 @@ public class ChatRoomUserService implements IChatRoomUserService {
 
     @Override
     public ChatRoomUserDto join(UUID chatRoomId, UUID userId) {
-        ChatRoomUser chatRoomUser = this.chatRoomUserRepository.findByChatRoomIdAndUserId(chatRoomId.toString(), userId.toString())
+        ChatRoomUser chatRoomUser = this.chatRoomUserRepository.findByChatRoomIdAndUserId(chatRoomId, userId)
                 .orElse(
                         this.create(
                                 this.chatRoomService.read(chatRoomId).mapDtoToEntity(),
@@ -96,12 +96,11 @@ public class ChatRoomUserService implements IChatRoomUserService {
                                 .orElse("Usuário não-identificado")
                 )
         );
-        this.chatRoomUserRepository.deleteById(chatRoomUser.getId());
     }
 
     @Override
     public List<ChatRoomUserDto> getByUserId(UUID userId) {
-        return this.chatRoomUserRepository.findAllByUserId(userId.toString())
+        return this.chatRoomUserRepository.findAllByUserId(userId)
                 .stream()
                 .map(ChatRoomUser::mapEntityToDto)
                 .toList();
@@ -116,7 +115,7 @@ public class ChatRoomUserService implements IChatRoomUserService {
     }
 
     private ChatRoomUser findByChatRoomIdAndUserId(UUID chatRoomId, UUID userId) {
-        return this.chatRoomUserRepository.findByChatRoomIdAndUserId(chatRoomId.toString(), userId.toString())
+        return this.chatRoomUserRepository.findByChatRoomIdAndUserId(chatRoomId, userId)
                 .orElseThrow(() -> new NotFoundException(CHAT_DONT_EXISTS));
     }
 
