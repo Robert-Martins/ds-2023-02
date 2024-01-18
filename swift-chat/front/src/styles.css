@@ -47,26 +47,37 @@ body.overflow-hidden {
     overflow-y: hidden;
 }
 
-button.swift-button{
-    width: 153px;
-    height: 36px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #845EF7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #F8F9FA;
+button.swift-button, a.swift-button {
+    transition: 0.2s all linear;
+    cursor: pointer;
 }
-/* TODO icons voltar, perfil, etc */
 
-button.swift-button.icon{
+button.swift-button.flat, a.swift-button.flat {
+    min-width: 180px;
+    max-width: 320px;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    background-color: var(--purple-primary);
+    border: 2px solid var(--purple-primary);
+    border-radius: 8px;
+}
+
+button.button.swift-button.flat.ghost, a.swift-button.flat.ghost {
+    color: var(--purple-primary);
+    background-color: white;
+}
+
+button.swift-button.flat:hover, a.swift-button.flat:hover {
+    color: var(--purple-primary);
+    background-color: white;
+}
+
+button.swift-button.flat.ghost:hover, a.swift-button.flat.ghost:hover {
+    color: white;
+    background-color: var(--purple-primary);
 }
 
 .card-title {
