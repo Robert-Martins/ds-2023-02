@@ -18,24 +18,26 @@ export class CodeComponent extends UtilComponent {
   constructor(
     private chatRoomService: ChatRoomService,
     private router: Router,
-    private injector: Injector
+    injector: Injector
   ) {
     super(injector);
   }
 
   public onCodeComplete = (code: string): void => {
-    console.log(code)
-    /* this.chatRoomService.getIdByCode(code)
+    this.loading.start();
+    this.chatRoomService.getIdByCode(code)
       .subscribe(
         {
           next: (id: string) => {
+            this.loading.stop();
             this.router.navigate([`lobby/${id}`]);
           },
           error: (error) => {
-            
+            this.snack.info(error?.message);
+            this.loading.stop();
           }
         }
-      ); */
+      );
   }
 
 }

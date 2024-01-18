@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { UtilComponent } from '../../shared/components/util/util.component';
 import { UserService } from '../../core/services/user.service';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +22,9 @@ export class HomeComponent extends UtilComponent implements OnInit {
   public isUser$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
-    injector: Injector,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    injector: Injector
   ) {
     super(injector);
   }
@@ -38,7 +39,7 @@ export class HomeComponent extends UtilComponent implements OnInit {
       this.loading.start();
       this.userService.create(this.usernameControl.value)
         .subscribe({
-          next: user => {
+          next: (user: User) => {
             this.userService.persistUser(user?.id);
             this.isUser$.next(true);
             this.loading.stop();
