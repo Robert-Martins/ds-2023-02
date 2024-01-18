@@ -20,6 +20,8 @@ html, body {
     --gray-dark: #2F3545;
     --gray-light: #CED4DA;
     --gray-lighter: #F8F9FA;
+
+    --danger: #ff1d0d;
 }
 
 h1 {
