@@ -4,7 +4,7 @@ import { LoadingService } from '../splash-screen/loading.service';
 import { DialogsService } from '../dialogs/dialogs.service';
 
 @Injectable()
-export class UtilComponent {
+export abstract class UtilComponent {
 
   protected snack: SnackbarService;
   protected loading: LoadingService;
