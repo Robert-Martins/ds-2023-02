@@ -9,8 +9,6 @@ import { Component } from '@angular/core';
       <ng-content select="swift-form-field-error"></ng-content>
     </div>
   `,
-  styleUrl: './swift-form-field.component.css'
+  styleUrl: './swift-form-field.component.css',
 })
-export class SwiftFormFieldComponent {
-
-}
+export class SwiftFormFieldComponent {}

@@ -3,24 +3,26 @@
   <br />
 
   <div class="chat-container">
-    <p class="chat-received">Professor</p>
-    <div class="chat-message-sended">
-      <p class="chat-text">Lorem Ipsum Portum Onseon</p>
-      <p class="chat-time">12:22</p>
-    </div>
-    <p class="chat-sender">João</p>
-    <div class="chat-message-received">
-      <p class="chat-text">Lorem Ipsum Portum Onseon</p>
-      <p class="chat-time">12:22</p>
-    </div>
-    <p class="chat-received">Professor</p>
-    <div class="chat-message-sended">
-      <p class="chat-text">Lorem Ipsum sit dolor amet</p>
-      <p class="chat-time">12:22</p>
+    <div *ngFor="let message of messages">
+      <p class="chat-{{ isSender(message) ? 'sender' : 'received' }}">{{ message.author.name }}</p>
+      <div [ngClass]="{
+        'chat-message-sended': isSender(message),
+        'chat-message-received': !isSender(message)
+      }">
+        <div class="message-wrapper">
+          <p class="chat-text">{{ message.message }}</p>
+          <p class="chat-time">{{ message.id }}</p>
+        </div>
+      </div>
     </div>
   </div>
+  
+  
 
   <div class="input-container">
-    <input type="text" placeholder="Digite aqui..." />
+    <input class="input" type="text" placeholder="Digite aqui..." [(ngModel)]="newMessage" />
+    <button class="input-button" (click)="sendMessage()">
+      <img src="/assets/icons/Send.png" alt="Enviar" />
+    </button>
   </div>
 </body>
