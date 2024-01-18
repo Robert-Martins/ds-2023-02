@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { UtilComponent } from '../../shared/components/util/util.component';
 
 @Component({
   selector: 'app-room',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './room.component.html',
   styleUrl: './room.component.css'
 })
-export class RoomComponent {
+export class RoomComponent extends UtilComponent {
 
+  constructor(
+    private injector: Injector
+  ) {
+    super(injector);
+  }
+  
 }

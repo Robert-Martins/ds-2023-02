@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { UtilComponent } from '../../shared/components/util/util.component';
 
 @Component({
   selector: 'app-chat',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
 })
-export class ChatComponent {}
+export class ChatComponent extends UtilComponent {
+
+  constructor(
+    private injector: Injector
+  ) {
+    super(injector);
+  }
+  
+}

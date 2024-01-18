@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { UtilComponent } from '../../shared/components/util/util.component';
 
 @Component({
   selector: 'app-lobby',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.css',
 })
-export class LobbyComponent {}
+export class LobbyComponent extends UtilComponent {
+
+  constructor(
+    private injector: Injector
+  ) {
+    super(injector);
+  }
+  
+}
