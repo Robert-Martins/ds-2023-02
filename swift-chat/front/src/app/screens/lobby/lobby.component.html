@@ -1,1 +1,11 @@
-<p>lobby works!</p>
+<swift-container>
+    <swift-flex *ngIf="chatRoom$ | async as chatRoom" mainAxis="column" justify="center" align="center" gap="8">
+        <h1>{{ chatRoom?.name }}</h1>
+        <h6>Algumas pessoas já estão no Chat</h6>
+        <swift-flex justify="center" align="center" gap="4">
+
+        </swift-flex>
+        <h6>Acesse também</h6>
+        <button swiftButton (click)="join()" type="button">Entrar na Sala</button>
+    </swift-flex>
+</swift-container>
