@@ -9,13 +9,15 @@ import { ContainersModule } from './containers/containers.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { DialogsModule } from './dialogs/dialogs.module';
+import { AvatarComponent } from './avatar/avatar.component';
 
 
 
 @NgModule({
   declarations: [
     SnackbarComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { DialogsModule } from './dialogs/dialogs.module';
     SidebarModule
   ],
   exports: [
+    AvatarComponent,
     CardsModule,
     ContainersModule,
     DialogsModule,
