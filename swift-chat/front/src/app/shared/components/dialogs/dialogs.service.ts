@@ -1,11 +1,11 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, OnDestroy, Type } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DialogComponentData, DialogOptions } from './dialog.types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DialogsService {
+export class DialogsService implements OnDestroy {
 
   public open$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -14,6 +14,11 @@ export class DialogsService {
   private onClose: <T> (arg: T) => void; 
 
   constructor() { }
+
+  ngOnDestroy(): void {
+    this.open$.unsubscribe();
+    this.dialogComponentData$.unsubscribe();
+  }
 
   public open(dialog: Type<any>, options?: DialogOptions): void {
     this.dialogComponentData$.next(

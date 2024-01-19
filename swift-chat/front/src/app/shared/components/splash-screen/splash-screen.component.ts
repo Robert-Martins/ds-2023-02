@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { LoadingService } from './loading.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,9 +16,10 @@ import { BehaviorSubject } from 'rxjs';
       </span>
     </div>
   `,
-  styleUrl: './splash-screen.component.css'
+  styleUrl: './splash-screen.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SplashScreenComponent {
+export class SplashScreenComponent implements OnDestroy {
 
   public isLoading$: BehaviorSubject<boolean>;
 
@@ -26,6 +27,10 @@ export class SplashScreenComponent {
     private loadingService: LoadingService
   ) {
     this.isLoading$ = this.loadingService.loading$;
+  }
+
+  ngOnDestroy(): void {
+      this.isLoading$.unsubscribe();
   }
 
 }

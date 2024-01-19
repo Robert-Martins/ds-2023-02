@@ -1,10 +1,10 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, OnDestroy, Renderer2, RendererFactory2 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoadingService {
+export class LoadingService implements OnDestroy {
 
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -19,6 +19,10 @@ export class LoadingService {
   ) { 
     this.renderer = this.rendererFactory.createRenderer(null, null);
     this.htmlBody = document.querySelector('body');
+  }
+
+  ngOnDestroy(): void {
+      this.loading$.unsubscribe();
   }
 
   public start(): void {

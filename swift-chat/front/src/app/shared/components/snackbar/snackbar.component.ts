@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Snack } from './snackbar.types';
 import { BehaviorSubject } from 'rxjs';
 import { SnackbarService } from './snackbar.service';
@@ -39,7 +39,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrl: './snackbar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SnackbarComponent {
+export class SnackbarComponent implements OnDestroy {
 
   public isUp$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -52,6 +52,11 @@ export class SnackbarComponent {
   ) {
     this.snack$ = this.snackbarService.snack$;
     this.snackbarService.onSnackAssign = this.performAnimation;
+  }
+
+  ngOnDestroy(): void {
+    this.isUp$.unsubscribe();
+    this.snack$.unsubscribe();
   }
 
   private performAnimation = (): void => {

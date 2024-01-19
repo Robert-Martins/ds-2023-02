@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -11,13 +11,17 @@ import { BehaviorSubject } from 'rxjs';
   styleUrl: './avatar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AvatarComponent {
+export class AvatarComponent implements OnDestroy {
 
   public username$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   @Input()
   public set username(username: string) {
     this.username$.next(username);
+  }
+
+  ngOnDestroy(): void {
+    this.username$.unsubscribe();
   }
 
 }

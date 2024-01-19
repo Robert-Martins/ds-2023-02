@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Injector, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -27,8 +27,10 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent extends UtilComponent implements OnInit {
+export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
+
   public usernameControl: FormControl;
 
   public isUser$: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -44,6 +46,10 @@ export class HomeComponent extends UtilComponent implements OnInit {
   ngOnInit() {
     this.createUsernameControl();
     this.handleUserData();
+  }
+
+  ngOnDestroy(): void {
+    this.isUser$.unsubscribe();
   }
 
   public onUsernameInputBlur(): void {

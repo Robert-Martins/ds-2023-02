@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { SnackbarService } from '../../snackbar/snackbar.service';
@@ -6,9 +6,10 @@ import { SnackbarService } from '../../snackbar/snackbar.service';
 @Component({
   selector: 'swift-share-chat-dialog',
   templateUrl: './share-chat-dialog.component.html',
-  styleUrl: './share-chat-dialog.component.css'
+  styleUrl: './share-chat-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShareChatDialogComponent {
+export class ShareChatDialogComponent implements OnDestroy {
 
   public chatRoomUrl$: BehaviorSubject<string> = new BehaviorSubject(null);
 
@@ -32,6 +33,12 @@ export class ShareChatDialogComponent {
     private router: Router,
     private snack: SnackbarService
   ) {
+  }
+
+  ngOnDestroy(): void {
+    this.chatRoomCode$.unsubscribe();
+    this.chatRoomUrl$.unsubscribe();
+    this.qrCodeUrl$.unsubscribe();
   }
 
   public onCopy(): void {

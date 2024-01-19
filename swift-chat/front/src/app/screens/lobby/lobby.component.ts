@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, OnDestroy } from '@angular/core';
 import { UtilComponent } from '../../shared/components/util/util.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ChatRoomService } from '../../core/services/chat-room.service';
@@ -17,7 +17,7 @@ import { UserService } from '../../core/services/user.service';
   styleUrl: './lobby.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LobbyComponent extends UtilComponent {
+export class LobbyComponent extends UtilComponent implements OnDestroy {
 
   public chatRoom$: BehaviorSubject<ChatRoom> = new BehaviorSubject(null);
 
@@ -31,6 +31,10 @@ export class LobbyComponent extends UtilComponent {
   ) {
     super(injector);
     this.getRouteData();
+  }
+
+  ngOnDestroy(): void {
+    this.chatRoom$.unsubscribe();   
   }
 
   public join(): void {

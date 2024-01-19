@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ChatEvent } from '../models/chat-event.model';
@@ -9,14 +9,15 @@ declare var Stomp;
 @Injectable({
   providedIn: 'root',
 })
-export class ChatService {
+export class ChatService implements OnDestroy {
+
   private subscription: any;
 
   private stompClient: any;
 
   private url: string = '';
 
-  private events: BehaviorSubject<ChatEvent[]> = new BehaviorSubject([]);
+  private events$: BehaviorSubject<ChatEvent[]> = new BehaviorSubject([]);
 
   private readonly SWIFT_CHAT_SOCKET_PATH = 'chat';
 
@@ -26,6 +27,10 @@ export class ChatService {
     this.subscription = null;
     this.stompClient = null;
     this.url = `${environment.apiUrl}/${this.SWIFT_CHAT_SOCKET_PATH}`;
+  }
+
+  ngOnDestroy(): void {
+    this.events$.unsubscribe();
   }
 
   public connect(id: string): Promise<void> {
@@ -48,7 +53,7 @@ export class ChatService {
 
   private onConnected = (id: string): void => {
     if (this.subscription) this.subscription.unsubscribe();
-    this.events.next([]);
+    this.events$.next([]);
     this.subscription = this.stompClient.subscribe(
       `${this.CHAT_ROOM_TOPIC_PATH}/${id}`,
       this.onEventPublished

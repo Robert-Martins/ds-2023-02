@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ChatRoom } from '../models/chat-room.model';
@@ -7,7 +7,7 @@ import { ChatRoom } from '../models/chat-room.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ChatRoomService {
+export class ChatRoomService  implements OnDestroy {
 
   private readonly CHAT_ROOM_PATH: string = 'chat-room';
 
@@ -15,7 +15,7 @@ export class ChatRoomService {
 
   private readonly CHAT_ROOM_ID_KEY: string = 'chat-room-id';
 
-  private chatRoomId: BehaviorSubject<string> = new BehaviorSubject(null);
+  private chatRoomId$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   private url: string;
 
@@ -23,6 +23,10 @@ export class ChatRoomService {
     private http: HttpClient
   ) { 
     this.url = `${environment.apiUrl}/${this.CHAT_ROOM_PATH}`;
+  }
+
+  ngOnDestroy(): void {
+    this.chatRoomId$.unsubscribe();
   }
 
   public read(id: string): Observable<ChatRoom> {
@@ -40,7 +44,7 @@ export class ChatRoomService {
   public retrieveChatRoomId(): void {
     const id = localStorage.getItem(this.CHAT_ROOM_ID_KEY);
     if(id)
-      this.chatRoomId.next(id);
+      this.chatRoomId$.next(id);
   }
 
   public clearChatRoomId(): void {

@@ -2,8 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ChatRoomService } from '../../core/services/chat-room.service';
 import { Router } from '@angular/router';
-import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
-import { LoadingService } from '../../shared/components/splash-screen/loading.service';
 import { UtilComponent } from '../../shared/components/util/util.component';
 
 @Component({
