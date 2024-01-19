@@ -18,8 +18,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-room',
   standalone: true,
   imports: [SharedModule, FormsModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './room.component.html',
-  styleUrl: './room.component.css',
+  templateUrl: './room.component.html'
 })
 export class RoomComponent extends UtilComponent implements OnInit {
   

@@ -26,7 +26,6 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {

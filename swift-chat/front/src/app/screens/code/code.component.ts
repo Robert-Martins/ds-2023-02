@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ChatRoomService } from '../../core/services/chat-room.service';
 import { Router } from '@angular/router';
@@ -8,8 +8,7 @@ import { UtilComponent } from '../../shared/components/util/util.component';
   selector: 'app-code',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './code.component.html',
-  styleUrl: './code.component.css'
+  templateUrl: './code.component.html'
 })
 export class CodeComponent extends UtilComponent {
 

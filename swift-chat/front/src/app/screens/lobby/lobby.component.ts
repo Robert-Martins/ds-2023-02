@@ -14,7 +14,6 @@ import { UserService } from '../../core/services/user.service';
   standalone: true,
   imports: [SharedModule],
   templateUrl: './lobby.component.html',
-  styleUrl: './lobby.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LobbyComponent extends UtilComponent implements OnDestroy {
