@@ -17,7 +17,7 @@ export class ChatService implements OnDestroy {
 
   private url: string = '';
 
-  private events$: BehaviorSubject<ChatEvent[]> = new BehaviorSubject([]);
+  private event$: BehaviorSubject<ChatEvent> = new BehaviorSubject(null);
 
   private readonly SWIFT_CHAT_SOCKET_PATH = 'chat';
 
@@ -30,10 +30,10 @@ export class ChatService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.events$.unsubscribe();
+    this.event$.unsubscribe();
   }
 
-  public connect(id: string): Promise<void> {
+  public async connect(id: string): Promise<void> {
     return new Promise(() => {
       this.startClient();
       this.stompClient.connect(
@@ -42,6 +42,16 @@ export class ChatService implements OnDestroy {
         this.onConnectionError
       );
     });
+  }
+
+  public setEventReceivedCallback(onEventReceived: (event: ChatEvent) => void): void {
+    this.event$.subscribe(onEventReceived);
+  }
+
+  public close(): void {
+    this.stompClient.close();
+    this.subscription = null;
+    this.stompClient = null;
   }
 
   private startClient(): void {
@@ -53,7 +63,7 @@ export class ChatService implements OnDestroy {
 
   private onConnected = (id: string): void => {
     if (this.subscription) this.subscription.unsubscribe();
-    this.events$.next([]);
+    this.event$.next(null);
     this.subscription = this.stompClient.subscribe(
       `${this.CHAT_ROOM_TOPIC_PATH}/${id}`,
       this.onEventPublished
@@ -65,6 +75,7 @@ export class ChatService implements OnDestroy {
   };
 
   private onEventPublished = (publishedEvent: any): void => {
-    const event = publishedEvent?.body as ChatEvent;
+    const event: ChatEvent = publishedEvent?.body as ChatEvent;
+    this.event$.next(event);
   };
 }
