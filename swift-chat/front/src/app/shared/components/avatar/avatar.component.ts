@@ -3,7 +3,11 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'swift-avatar',
-  templateUrl: './avatar.component.html',
+  template: `
+    <div *ngIf="username$ | async as name" [swiftTooltip]="name" class="swift-avatar">
+      <p>{{ name | acronym }}</p>
+    </div>
+  `,
   styleUrl: './avatar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

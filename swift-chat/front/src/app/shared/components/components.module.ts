@@ -10,6 +10,8 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { DirectivesModule } from '../directives/directives.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
     CommonModule,
     CardsModule,
     ContainersModule,
+    DirectivesModule,
+    PipesModule,
     DialogsModule,
     HeaderModule,
     InputsModule,

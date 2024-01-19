@@ -1,0 +1,17 @@
+div.swift-avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple-primary);
+    border: 1px solid var(--purple-secondary);
+    border-radius: 16px;
+    transition: 0.2s;
+}
+
+div.swift-avatar > p {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
