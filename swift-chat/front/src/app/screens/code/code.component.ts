@@ -14,7 +14,6 @@ export class CodeComponent extends UtilComponent {
 
   constructor(
     private chatRoomService: ChatRoomService,
-    private router: Router,
     injector: Injector
   ) {
     super(injector);

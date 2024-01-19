@@ -6,7 +6,6 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ChatRoom } from '../../core/models/chat-room.model';
 import { BehaviorSubject } from 'rxjs';
 import { ChatRoomUserService } from '../../core/services/chat-room-user.service';
-import { ChatService } from '../../core/services/chat.service';
 import { UserService } from '../../core/services/user.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
     private chatRoomService: ChatRoomService,
     private chatRoomUserService: ChatRoomUserService,
     private userService: UserService,
-    private router: Router,
     private route: ActivatedRoute,
     injector: Injector
   ) {
@@ -50,9 +48,7 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
       error: error => {
         this.chatRoom$.next(null);
         this.snack.error(error?.message);
-        this.snack.info('Você será redirecionado para a Home');
-        this.loading.stop();
-        this.router.navigate(['']);
+        this.onLoadChatError();
       }
     });
   }
@@ -65,6 +61,7 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
       },
       error: () => {
         this.snack.error("Acesso inválido");
+        this.onLoadChatError();
       }
     });
   }
@@ -79,7 +76,7 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
         },
         error: error => {
           this.snack.error(error?.message);
-          this.loading.stop();
+          this.onLoadChatError();
         }
       });
   }

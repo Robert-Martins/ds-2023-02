@@ -28,7 +28,6 @@ export class RoomComponent extends UtilComponent implements OnInit {
     private chatRoomUserService: ChatRoomUserService,
     private userService: UserService,
     private fb: FormBuilder,
-    private router: Router,
     injector: Injector
   ) {
     super(injector);
@@ -48,7 +47,7 @@ export class RoomComponent extends UtilComponent implements OnInit {
         .subscribe({
           next: (chat: ChatRoomUser) => {
             this.loading.stop();
-            this.router.navigate([`/chat/${chat?.chatRoom?.id}?role=ADMIN`]);
+            this.router.navigate([`/chat/${chat?.chatRoom?.id}`]);
           },
           error: (error) => {
             this.loading.stop();
