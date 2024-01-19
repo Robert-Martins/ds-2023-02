@@ -28,29 +28,37 @@ header {
   color: #f8f9fa;
 }
 
+.header-button {
+  background-color: #845ef7;
+  border: none;
+  cursor: pointer;
+}
+
 .chat-container {
   width: 300px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #ccc;
   padding: 10px;
   overflow-y: scroll;
-  height: 300px;
 }
 
 .chat-message-sended {
-  width: 245px;
+  display: inline-block;
   position: left;
-  background-color: #7048E8;
+  background-color: #7048e8;
   font-family: Roboto;
-  align-items: flex-end;
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
   color: #212529;
   padding: 5px;
+  text-align: left;
 }
 
 .chat-message-received {
-  width: 245px;
+  display: inline-block;
   position: left;
   background-color: #ced4da;
   font-family: Roboto;
@@ -59,6 +67,7 @@ header {
   line-height: 14px;
   color: #212529;
   padding: 5px;
+  text-align: left;
 }
 
 .chat-sender {
@@ -66,7 +75,6 @@ header {
   margin-bottom: 5px;
   width: 36px;
   right: 24px;
-  text-align: right;
   font-size: 8px;
   margin-top: 10px;
 }
@@ -92,13 +100,32 @@ header {
 }
 
 .input-container {
-  width: 300px;
+  width: 320px;
+  height: 40px;
   margin-top: 10px;
+  background-color: #7048e8;
+}
+
+.input-button {
+  position: absolute;
+  margin-top: 10px;
+  border: none;
+  background-color: #7048e8;
+  cursor: pointer;
+}
+
+.message-wrapper {
+  display: inline-block;
 }
 
 input[type="text"] {
-  width: 100%;
+  width: 269px;
+  height: 22px;
   padding: 10px;
+  margin-top: 10px;
+  margin-right: 6px;
+  margin-left: 5px;
+  background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }

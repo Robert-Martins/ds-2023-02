@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ChatService implements IChatService {
 
-    private static final String CHAT_SOCKET_DESTINATION_PREFIXE = "/room/%s";
+    private static final String CHAT_SOCKET_DESTINATION_PREFIX = "/room/%s";
 
     private final SimpMessagingTemplate messagingTemplate;
 
     @Override
     public void publishEvent(ChatEventDto chatEventDto) {
         messagingTemplate.convertAndSend(
-                String.format(CHAT_SOCKET_DESTINATION_PREFIXE, chatEventDto.getChatId()),
+                String.format(CHAT_SOCKET_DESTINATION_PREFIX, chatEventDto.getChatId()),
                 chatEventDto
         );
     }

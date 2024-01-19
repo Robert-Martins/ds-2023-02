@@ -17,6 +17,7 @@ public class EnumService implements IEnumService {
         return switch (type) {
             case "userRoleInChat" -> Arrays.stream(UserRoleInChat.values()).map(e -> new EnumDto(e.name(), e.getDescription())).toList();
             case "chatEventType" -> Arrays.stream(ChatEventType.values()).map(e -> new EnumDto(e.name(), e.getDescription())).toList();
+            default -> List.of();
         };
     }
 

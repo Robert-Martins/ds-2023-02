@@ -14,24 +14,21 @@ import java.util.UUID;
 public interface ChatRoomUserRepository extends JpaRepository<ChatRoomUser, UUID> {
 
     Boolean existsByChatRoomIdAndUserId(
-            @Param(value = "chatRoomId") String chatRoomId,
-            @Param(value = "userId") String userId
+            @Param(value = "chatRoomId") UUID chatRoomId,
+            @Param(value = "userId") UUID userId
     );
 
-    @Query(value = "SELECT * FROM ChatRoomUser cru " +
-                    "WHERE cru.chatRoom.id = :chatRoomId " +
-                    "AND cru.user.id = :userId"
-    )
+    @Query("SELECT cru FROM ChatRoomUser cru " +
+            "WHERE cru.chatRoom.id = :chatRoomId " +
+            "AND cru.user.id = :userId")
     Optional<ChatRoomUser> findByChatRoomIdAndUserId(
-            @Param(value = "chatRoomId") String chatRoomId,
-            @Param(value = "userId") String userId
+            @Param(value = "chatRoomId") UUID chatRoomId,
+            @Param(value = "userId") UUID userId
     );
 
-    @Query(value = "SELECT * FROM ChatRoomUser cru " +
-            "WHERE cru.user.id = :userId"
-    )
+    @Query("SELECT cru FROM ChatRoomUser cru " +
+            "WHERE cru.user.id = :userId")
     List<ChatRoomUser> findAllByUserId(
-            @Param(value = "userId") String userId
+            @Param(value = "userId") UUID userId
     );
-
 }

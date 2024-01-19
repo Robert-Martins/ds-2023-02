@@ -15,7 +15,7 @@ public class ChatRoomController {
 
     private final IChatRoomService chatRoomService;
 
-    @GetMapping("/{chatRoomId")
+    @GetMapping("/{chatRoomId}")
     @ResponseStatus(HttpStatus.OK)
     public ChatRoomDto read(@PathVariable(name = "chatRoomId") String id) {
         return this.chatRoomService.read(UUID.fromString(id));

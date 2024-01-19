@@ -7,8 +7,6 @@ import { Component } from '@angular/core';
       <ng-content></ng-content>
     </div>
   `,
-  styleUrl: './container.component.css'
+  styleUrl: './container.component.css',
 })
-export class ContainerComponent {
-
-}
+export class ContainerComponent {}

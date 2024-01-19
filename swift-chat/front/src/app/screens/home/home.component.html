@@ -8,10 +8,10 @@
                 [formControl]="usernameControl"
                 (blur)="onUsernameInputBlur()"
             />
-            <swift-form-field-error *ngIf="usernameControl?.touched && usernameControl?.errors?.required">
+            <swift-form-field-error *ngIf="usernameControl?.touched && usernameControl?.errors?.['required']">
                 O nome de usuário é <strong>obrigatório</strong>
             </swift-form-field-error>
-            <swift-form-field-error *ngIf="usernameControl?.errors?.maxlength">
+            <swift-form-field-error *ngIf="usernameControl?.errors?.['maxlength']">
                 Máximo de <strong>20 caracteres</strong>
             </swift-form-field-error>
         </swift-form-field>
