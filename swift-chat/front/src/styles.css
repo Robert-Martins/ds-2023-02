@@ -109,6 +109,30 @@ button.swift-button.flat.ghost:hover, a.swift-button.flat.ghost:hover {
     background-color: var(--purple-primary);
 }
 
+div.swift-form-field > input {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-light);
+    outline: 0;
+    border: 2px solid var(--gray-darker);
+    border-radius: 8px;
+    transition: 0.2s all linear;
+}
+  
+div.swift-form-field > input:hover {
+    color: var(--gray-lighter);
+    border: 2px solid var(--purple-quaternary);
+    transition: 0.2s all linear;
+}
+  
+div.swift-form-field > input:focus {
+    color: var(--gray-darker);
+    border: 2px solid var(--purple-primary);
+    transition: 0.2s all linear;
+}
+
 .card-title {
     font-family: Roboto;
     font-size: 24px;
