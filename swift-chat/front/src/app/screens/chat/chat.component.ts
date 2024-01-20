@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injector } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { Message } from '../../core/models/message.model';
 import { ChatService } from '../../core/services/chat.service';
 import { UtilComponent } from '../../shared/components/util/util.component';
@@ -15,6 +15,8 @@ import { AppService } from '../../core/services/app.service';
 import { Enum } from '../../core/types/types';
 import { ConfirmationDialogComponent } from '../../shared/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MessageService } from '../../core/services/message.service';
+import { ShareChatDialogComponent } from '../../shared/components/dialogs/share-chat-dialog/share-chat-dialog.component';
+import { ChatRoom } from '../../core/models/chat-room.model';
 
 @Component({
   selector: 'app-chat',
@@ -106,17 +108,55 @@ export class ChatComponent extends UtilComponent {
     this.dialog.open(
       ConfirmationDialogComponent,
       {
+        inputs: {
+          text: 'Deseja sair do Chat?'
+        },
         onClose: this.handleConfirmationOption
       }
-    )
+    );
   } 
+
+  public onClickShare(): void {
+    const chatRoom: ChatRoom = this.chatRoomUser$.value?.chatRoom;
+    this.dialog.open(
+      ShareChatDialogComponent,
+      {
+        inputs: {
+          chatRoomId: chatRoom?.id,
+          chatRoomCode: chatRoom?.code
+        }
+      }
+    );
+  }
 
   public submitMessage(): void {
 
   }
 
   private handleConfirmationOption = (bool: any): void => {
+    if(bool)
+      this.onLeave();
+  }
 
+  private onLeave(): void {
+    this.loading.start();
+    const chatRoomUser: ChatRoomUser = this.chatRoomUser$.value;
+    const userId: string = chatRoomUser?.user?.id;
+    const chatRoomId: string = chatRoomUser?.chatRoom?.id;
+    this.chatRoomUserService.left(
+      chatRoomId,
+      userId
+    ).subscribe({
+      next: () => {
+        this.chatService.close();
+        this.loading.stop();
+        this.router.navigate([""]);
+      },
+      error: error => {
+        this.snack.error(error?.message);
+        this.loading.stop();
+      }
+    })
   }
 
   private onChatAccess(): void {
@@ -137,7 +177,20 @@ export class ChatComponent extends UtilComponent {
     const userId: string = this.userService.getUserId();
     this.chatRoomUserService.read(chatRoomId, userId)
       .subscribe({
-
+        next: async (chatRoomUser: ChatRoomUser) => {
+          await this.chatService.connect(chatRoomId);
+          this.chatRoomUser$.next(chatRoomUser);
+          this.events$.next(
+            chatRoomUser?.chatRoom?.messages
+              ?.map(ChatEvent.buildFromMessage)
+          );
+          this.loading.stop();
+        },
+        error: error => {
+          this.snack.error(error?.message);
+          this.snack.info("Retornando para o lobby");
+          this.router.navigate([`/lobby${chatRoomId}`]);
+        }
       });
   }
 
