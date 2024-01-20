@@ -7,6 +7,7 @@ export class ChatRoom {
     public name: string;
     public messages: Message[] = [];
     public chatRoomUsers: ChatRoomUser[] = [];
+    public code: string;
     public createdAt: Date;
 
     constructor(
@@ -14,12 +15,14 @@ export class ChatRoom {
         name: string = null,
         messages: Message[] = [],
         chatRoomUsers: ChatRoomUser[] = [],
+        code: string = null,
         createdAt: Date = null
     ) {
         this.id = id;
         this.name = name;
         this.messages = messages;
         this.chatRoomUsers = chatRoomUsers;
+        this.code = code;
         this.createdAt = createdAt;
     }
 
