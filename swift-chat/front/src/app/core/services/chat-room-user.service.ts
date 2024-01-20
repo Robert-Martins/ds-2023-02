@@ -26,7 +26,7 @@ export class ChatRoomUserService {
   }
 
   public create(name: string, userId: string): Observable<ChatRoomUser> {
-    return this.http.post<ChatRoomUser>(`${this.url}/${name}${userId ? `?userId=${userId}`: ''}`, null);
+    return this.http.post<ChatRoomUser>(`${this.url}${userId ? `?userId=${userId}`: ''}`, name);
   }
 
   public read(chatRoomId: string, userId: string): Observable<ChatRoomUser> {

@@ -28,7 +28,7 @@ export class UserService implements OnDestroy {
   }
 
   public create(name: string): Observable<User> {
-    return this.http.post<User>(`${this.url}/${name}`, null);
+    return this.http.post<User>(this.url, name);
   }
 
   public read(): Observable<User> {
@@ -45,6 +45,10 @@ export class UserService implements OnDestroy {
   }
 
   public getUserId(): string {
+    const userId: string = this.userId$.value;
+    if(userId)
+      return userId;
+    this.retrieveUserId();
     return this.userId$.value;
   }
 
@@ -57,6 +61,10 @@ export class UserService implements OnDestroy {
     const id = localStorage.getItem(this.USER_ID_KEY);
     if(id)
       this.userId$.next(id);
+  }
+
+  public clearUserId(): void {
+    localStorage.removeItem(this.USER_ID_KEY);
   }
 
 }

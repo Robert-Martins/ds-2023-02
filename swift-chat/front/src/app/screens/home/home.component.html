@@ -15,10 +15,12 @@
                 Máximo de <strong>20 caracteres</strong>
             </swift-form-field-error>
         </swift-form-field>
-        <h1>e eu vou</h1>
-        <swift-flex *ngIf="isUser$ | async as isUser" mainAxis="column" justify="center" align="center" gap="8">
-            <a swiftButton [routerLink]="isUser ? '/room' : null">Criar uma sala</a>
-            <a swiftButton [routerLink]="isUser ? '/code' : null">Entrar em uma sala</a>
-        </swift-flex>
+        <ng-container *ngIf="isUser$ | async as isUser">
+            <h1>e eu vou</h1>
+            <swift-flex mainAxis="column" justify="center" align="center" gap="8">
+                <a swiftButton routerLink="/room">Criar uma sala</a>
+                <a swiftButton routerLink="/code">Entrar em uma sala</a>
+            </swift-flex>
+        </ng-container>
     </swift-flex>
 </swift-container>

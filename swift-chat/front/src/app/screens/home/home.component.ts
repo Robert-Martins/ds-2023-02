@@ -88,6 +88,7 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.snack.error(error?.message);
+          this.userService.clearUserId();
           this.loading.stop();
         },
       });

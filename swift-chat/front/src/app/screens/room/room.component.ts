@@ -6,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ChatRoomUser } from '../../core/models/chat-room-user.model';
 import { ChatRoomUserService } from '../../core/services/chat-room-user.service';
 import { UserService } from '../../core/services/user.service';
@@ -32,8 +31,6 @@ export class RoomComponent extends UtilComponent implements OnInit {
   ) {
     super(injector);
   }
-
-  usernameControl: any;
 
   ngOnInit(): void {
     this.createRoomNameControl();
