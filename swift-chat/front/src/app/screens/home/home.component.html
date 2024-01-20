@@ -1,26 +1,31 @@
-<swift-container>
-    <swift-flex mainAxis="column" justify="center" align="center" gap="12">
-        <h1>Meu nome é</h1>
-        <swift-form-field *ngIf="usernameControl">
-            <input
-                type="text"
-                placeholder="Nome de Usuário"
-                [formControl]="usernameControl"
-                (blur)="onUsernameInputBlur()"
-            />
-            <swift-form-field-error *ngIf="usernameControl?.touched && usernameControl?.errors?.['required']">
-                O nome de usuário é <strong>obrigatório</strong>
-            </swift-form-field-error>
-            <swift-form-field-error *ngIf="usernameControl?.errors?.['maxlength']">
-                Máximo de <strong>20 caracteres</strong>
-            </swift-form-field-error>
-        </swift-form-field>
-        <ng-container *ngIf="isUser$ | async as isUser">
-            <h1>e eu vou</h1>
-            <swift-flex mainAxis="column" justify="center" align="center" gap="8">
-                <a swiftButton routerLink="/room">Criar uma sala</a>
-                <a swiftButton routerLink="/code">Entrar em uma sala</a>
-            </swift-flex>
-        </ng-container>
+<swift-container style="height: 100vh; overflow: hidden; position: relative;">
+    <swift-flex mainAxis="row" align="flex-start" gap="0">
+        
+        <img src="assets/icons/Home_Side.png" style="width: 25%; height: 100vh; object-fit: cover; position: absolute; top: 0; left: 0;">
+
+        <swift-flex mainAxis="column" justify="center" align="center" gap="12" style="flex: 1; margin-left: 0%; margin-top: 30%;" >
+            <h1>Meu nome é</h1>
+            <swift-form-field *ngIf="usernameControl">
+                <input
+                    type="text"
+                    placeholder="Nome de Usuário"
+                    [formControl]="usernameControl"
+                    (blur)="onUsernameInputBlur()"
+                />
+                <swift-form-field-error *ngIf="usernameControl?.touched && usernameControl?.errors?.['required']">
+                    O nome de usuário é <strong>obrigatório</strong>
+                </swift-form-field-error>
+                <swift-form-field-error *ngIf="usernameControl?.errors?.['maxlength']">
+                    Máximo de <strong>20 caracteres</strong>
+                </swift-form-field-error>
+            </swift-form-field>
+            <ng-container *ngIf="isUser$ | async as isUser">
+                <h1>e eu vou</h1>
+                <swift-flex mainAxis="column" justify="center" align="center" gap="8">
+                    <a swiftButton routerLink="/room">Criar uma sala</a>
+                    <a swiftButton routerLink="/code">Entrar em uma sala</a>
+                </swift-flex>
+            </ng-container>
+        </swift-flex>
     </swift-flex>
 </swift-container>

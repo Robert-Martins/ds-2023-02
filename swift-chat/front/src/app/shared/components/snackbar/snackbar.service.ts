@@ -3,10 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { Snack } from './snackbar.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnackbarService {
-
   public snack$: BehaviorSubject<Snack> = new BehaviorSubject<Snack>(null);
 
   public onSnackAssign: () => void;
@@ -29,25 +28,20 @@ export class SnackbarService {
 
   private processSnackMessage(snack: Snack): void {
     this.snacks.push(snack);
-    if(this.snacks.length === 1)
-      this.handleSnackAssign(snack);
+    if (this.snacks.length === 1) this.handleSnackAssign(snack);
   }
 
   private handleSnackMessageFlow = (): void => {
-    this.snacks = this.snacks.filter(snack => !snack.equals(this.snack$.value));
+    this.snacks = this.snacks.filter(
+      (snack) => !snack.equals(this.snack$.value)
+    );
     this.snack$.next(null);
-    if(this.snacks.length > 0)
-      this.handleSnackAssign(this.snacks.shift());
-  }
+    if (this.snacks.length > 0) this.handleSnackAssign(this.snacks.shift());
+  };
 
   private handleSnackAssign(snack: Snack): void {
     this.snack$.next(snack);
-    if(this.onSnackAssign)
-      this.onSnackAssign();
-    setTimeout(
-      this.handleSnackMessageFlow,
-      this.snackTimeout
-    );
+    if (this.onSnackAssign) this.onSnackAssign();
+    setTimeout(this.handleSnackMessageFlow, this.snackTimeout);
   }
-
 }
