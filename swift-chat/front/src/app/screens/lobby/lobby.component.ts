@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Injector, OnDestroy } from '@angula
 import { UtilComponent } from '../../shared/components/util/util.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ChatRoomService } from '../../core/services/chat-room.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ChatRoom } from '../../core/models/chat-room.model';
 import { BehaviorSubject } from 'rxjs';
 import { ChatRoomUserService } from '../../core/services/chat-room-user.service';
