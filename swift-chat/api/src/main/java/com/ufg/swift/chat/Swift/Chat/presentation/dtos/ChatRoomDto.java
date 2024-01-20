@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class ChatRoomDto extends EntityDto<ChatRoom> {
 
     private String name;
+
     private String code;
 
     private Set<MessageDto> messages = new HashSet<>();

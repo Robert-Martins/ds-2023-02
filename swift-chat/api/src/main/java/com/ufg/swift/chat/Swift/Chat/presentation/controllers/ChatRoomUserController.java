@@ -16,11 +16,11 @@ public class ChatRoomUserController {
 
     private final IChatRoomUserService chatRoomUserService;
 
-    @PostMapping("/{name}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ChatRoomUserDto create(
-            @PathVariable(name = "name") String name,
-            @RequestParam(name = "userId") String userId
+            @RequestParam(name = "userId") String userId,
+            @RequestBody String name
     ) {
         return this.chatRoomUserService.create(name, UUID.fromString(userId));
     }
