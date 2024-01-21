@@ -8,7 +8,7 @@ import org.springframework.messaging.support.ExecutorSubscribableChannel;
 import org.springframework.web.socket.config.annotation.*;
 
 @Configuration
-@EnableWebSocket
+@EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
