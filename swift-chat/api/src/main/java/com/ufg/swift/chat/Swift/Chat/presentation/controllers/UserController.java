@@ -36,7 +36,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable(value = "id") UUID id,
-                                              @RequestParam String name) {
+                                              @RequestBody String name) {
         UserDto user = userService.read(id);
         if (user != null) {
             userService.update(id, name);

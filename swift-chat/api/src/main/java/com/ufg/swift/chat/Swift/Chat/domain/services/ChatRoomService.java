@@ -38,9 +38,9 @@ public class ChatRoomService implements IChatRoomService {
     }
 
     @Override
-    public ChatRoomDto readByCode(String code) {
+    public UUID readIdByCode(String code) {
         return this.chatRoomRepository.findByCode(code)
-                .map(ChatRoom::mapEntityToDto)
+                .map(ChatRoom::getId)
                 .orElseThrow(
                         () -> new NotFoundException(
                                 String.format(CHAT_ROOM_DONT_EXISTS_BY_CODE, code)

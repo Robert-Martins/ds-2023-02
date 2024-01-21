@@ -23,8 +23,8 @@ public class ChatRoomController {
 
     @GetMapping("/code/{code}")
     @ResponseStatus(HttpStatus.OK)
-    public ChatRoomDto readByCode(@PathVariable(name = "code") String code) {
-        return this.chatRoomService.readByCode(code);
+    public UUID readIdByCode(@PathVariable(name = "code") String code) {
+        return this.chatRoomService.readIdByCode(code);
     }
 
 }

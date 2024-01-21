@@ -10,7 +10,7 @@ public interface IChatRoomService {
 
     ChatRoomDto read(UUID uuid);
 
-    ChatRoomDto readByCode(String code);
+    UUID readIdByCode(String code);
 
     ChatRoomDto update(UUID uuid, String name);
 
