@@ -49,7 +49,8 @@ export class ChatService implements OnDestroy {
   }
 
   public close(): void {
-    this.stompClient.close();
+    if(this.stompClient)
+      this.stompClient.disconnect();
     this.subscription = null;
     this.stompClient = null;
   }
@@ -62,12 +63,14 @@ export class ChatService implements OnDestroy {
   }
 
   private onConnected = (id: string): void => {
-    if (this.subscription) this.subscription.unsubscribe();
+    if (this.subscription) 
+      this.subscription.unsubscribe();
     this.event$.next(null);
     this.subscription = this.stompClient.subscribe(
       `${this.CHAT_ROOM_TOPIC_PATH}/${id}`,
       this.onEventPublished
     );
+    Promise.resolve();
   };
 
   private onConnectionError = (): void => {

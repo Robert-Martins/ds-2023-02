@@ -18,8 +18,9 @@ export class CodeComponent extends UtilComponent {
     super(injector);
   }
 
-  public onCodeComplete = (code: string): void => {
+  public onCodeComplete(code: string): void {
     this.loading.start();
+    console.log(this);
     this.chatRoomService.getIdByCode(code)
       .subscribe(
         {

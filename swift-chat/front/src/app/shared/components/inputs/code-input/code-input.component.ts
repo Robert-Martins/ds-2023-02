@@ -38,7 +38,6 @@ export class CodeInputComponent {
     const fullcode: string = this.code.controls
                           .map(control => control.value)
                           .join('');
-                          console.log(fullcode)
     this.onSubmit.emit(fullcode);
   }
 

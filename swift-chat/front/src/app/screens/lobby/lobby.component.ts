@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Injector, OnDestroy } from '@angular/core';
 import { UtilComponent } from '../../shared/components/util/util.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -11,7 +12,7 @@ import { UserService } from '../../core/services/user.service';
 @Component({
   selector: 'app-lobby',
   standalone: true,
-  imports: [SharedModule],
+  imports: [CommonModule, SharedModule],
   templateUrl: './lobby.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

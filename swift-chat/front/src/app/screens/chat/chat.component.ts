@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injector } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ChatEvent } from '../../core/models/chat-event.model';
@@ -26,6 +26,7 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent extends UtilComponent {
+
   public chatRoomUser$: BehaviorSubject<ChatRoomUser> = new BehaviorSubject(
     null
   );
@@ -33,6 +34,10 @@ export class ChatComponent extends UtilComponent {
   public events$: BehaviorSubject<ChatEvent[]> = new BehaviorSubject([]);
 
   public roles$: BehaviorSubject<Enum[]> = new BehaviorSubject([]);
+
+  public messageControl: FormControl;
+
+  private readonly CHAT_ROLES_ENUM: string = "userRoleInChat";
 
   messages: Message[] = [];
   newMessage: string = '';
@@ -44,6 +49,7 @@ export class ChatComponent extends UtilComponent {
     private messageService: MessageService,
     private appService: AppService,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
     injector: Injector
   ) {
     super(injector);
@@ -51,6 +57,7 @@ export class ChatComponent extends UtilComponent {
   }
 
   ngOnInit() {
+    this.createMessageControl();
     this.onChatAccess();
     this.addSampleMessages();
   }
@@ -131,7 +138,19 @@ export class ChatComponent extends UtilComponent {
     });
   }
 
-  public submitMessage(): void {}
+  public submitMessage(): void {
+    if(this.messageControl.valid) {
+      const message: string = this.messageControl.value;
+      this.messageControl.reset();
+      this.messageService.send(
+        message,
+        this.chatRoomUser$.value
+      ).subscribe({
+        next: () => {},
+        error: (error) => this.handleError(error)
+      });
+    }
+  }
 
   private handleConfirmationOption = (bool: any): void => {
     if (bool) this.onLeave();
@@ -189,7 +208,7 @@ export class ChatComponent extends UtilComponent {
   }
 
   private loadRoles(): void {
-    this.appService.loadEnumByType('').subscribe({
+    this.appService.loadEnumByType(this.CHAT_ROLES_ENUM).subscribe({
       next: (enums: Enum[]) => {
         this.roles$.next(enums);
       },
@@ -205,4 +224,12 @@ export class ChatComponent extends UtilComponent {
     events.push(event);
     this.events$.next(events);
   };
+
+  private createMessageControl(): void {
+    this.messageControl = this.fb.control(
+      '',
+      [Validators.required]
+    );
+  }
+
 }

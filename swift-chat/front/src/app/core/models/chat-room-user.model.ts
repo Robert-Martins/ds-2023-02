@@ -11,9 +11,9 @@ export class ChatRoomUser {
 
     constructor(
         id: string = null,
-        userRole: string = null,
         chatRoom: ChatRoom = null,
         user: User = null,
+        userRole: string = null,
         createdAt: Date = null
     ) {
         this.id = id;

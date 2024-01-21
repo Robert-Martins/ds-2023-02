@@ -34,6 +34,7 @@ export class ChatRoomService  implements OnDestroy {
   }
 
   public getIdByCode(code: string): Observable<string> {
+    console.log("toque toque")
     return this.http.get<string>(`${this.url}/${this.CODE_PATH}/${code}`);
   }
 

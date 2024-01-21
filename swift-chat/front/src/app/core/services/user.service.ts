@@ -35,8 +35,8 @@ export class UserService implements OnDestroy {
     return this.http.get<User>(`${this.url}/${this.userId$.value}`);
   }
 
-  public update(user: User): Observable<void> {
-    return this.http.put<void>(this.url, user);
+  public update(name: string): Observable<void> {
+    return this.http.put<void>(`${this.url}/${this.userId$.value}`, name);
   }
 
   public isUser(): boolean {
