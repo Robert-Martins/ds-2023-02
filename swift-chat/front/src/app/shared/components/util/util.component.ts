@@ -28,6 +28,7 @@ export abstract class UtilComponent {
   protected handleError(httpError: ApplicationError): void {
     const error: any | SwiftApplicationError = httpError?.error;
     this.snack.error(this.isSwiftApplicationError(error) ? error?.details : error?.message);
+    this.loading.stop();
   }
 
   private isSwiftApplicationError(error: any | SwiftApplicationError): boolean {

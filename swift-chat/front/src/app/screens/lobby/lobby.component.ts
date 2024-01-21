@@ -43,11 +43,12 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
       userId
     ).subscribe({
       next: () => {
+        this.loading.stop();
         this.router.navigate([`/chat/${chatRoomId}`]);
       },
       error: error => {
         this.chatRoom$.next(null);
-        this.snack.error(error?.message);
+        this.handleError(error);
         this.onLoadChatError();
       }
     });
@@ -74,8 +75,8 @@ export class LobbyComponent extends UtilComponent implements OnDestroy {
           this.chatRoom$.next(chatRoom);
           this.loading.stop();
         },
-        error: error => {
-          this.snack.error(error?.message);
+        error: (error) => {
+          this.handleError(error);
           this.onLoadChatError();
         }
       });

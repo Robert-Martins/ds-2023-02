@@ -46,10 +46,7 @@ export class RoomComponent extends UtilComponent implements OnInit {
             this.loading.stop();
             this.router.navigate([`/chat/${chat?.chatRoom?.id}`]);
           },
-          error: (error) => {
-            this.loading.stop();
-            this.snack.error(error?.message);
-          },
+          error: (error) => this.handleError(error),
         });
     }
   }

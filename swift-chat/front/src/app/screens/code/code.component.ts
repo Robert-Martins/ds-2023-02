@@ -27,10 +27,7 @@ export class CodeComponent extends UtilComponent {
             this.loading.stop();
             this.router.navigate([`lobby/${id}`]);
           },
-          error: (error) => {
-            this.snack.info(error?.message);
-            this.loading.stop();
-          }
+          error: (error) => this.handleError(error)
         }
       );
   }

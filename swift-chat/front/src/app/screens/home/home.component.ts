@@ -67,10 +67,7 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
         this.isUser$.next(true);
         this.loading.stop();
       },
-      error: (error) => {
-        this.snack.error(error?.message);
-        this.loading.stop();
-      },
+      error: (error) => this.handleError(error),
     });
   }
 
@@ -82,10 +79,7 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
       next: () => {
         this.loading.stop();
       },
-      error: (error) => {
-        this.snack.error(error?.message);
-        this.loading.stop();
-      },
+      error: (error) => this.handleError(error),
     });
   }
 
@@ -105,9 +99,7 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
           this.isUser$.next(true);
           this.loading.stop();
         },
-        error: (error) => {
-          console.log(error)
-          this.snack.error(error?.details);
+        error: () => {
           this.userService.clearUserId();
           this.loading.stop();
         },
