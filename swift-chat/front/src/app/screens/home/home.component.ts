@@ -75,7 +75,10 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
     this.loading.start();
     this.userService.update(this.usernameControl.value).subscribe({
       next: () => this.loading.stop(),
-      error: (error) => this.handleError(error),
+      error: (error) => {
+        this.handleError(error);
+        this.userService.clearUserId();
+      },
     });
   }
 
