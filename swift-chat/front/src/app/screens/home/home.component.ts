@@ -53,7 +53,7 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
 
   public onUsernameSubmit(): void {
     if (this.usernameControl.valid) {
-      this.userService.isUser() ? this.createUser() : this.updateUser();
+      this.userService.isUser() ? this.updateUser() : this.createUser();
     } else {
       this.snack.info('Nome de usuário inválido');
     }

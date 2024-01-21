@@ -5,6 +5,7 @@
             <input
                 type="text"
                 placeholder="Nome da sala de bate-papo"
+                (keyup.enter)="onClickCreate()"
                 [formControl]="roomNameControl"
             />
             <swift-form-field-error *ngIf="roomNameControl?.touched && roomNameControl?.errors?.['required']">
