@@ -23,6 +23,8 @@ export class ChatService implements OnDestroy {
 
   private readonly CHAT_ROOM_TOPIC_PATH = '/room';
 
+  private readonly TIMEOUT_FOR_CONNECTION_STABLISHING: number = 3000;
+
   constructor() {
     this.subscription = null;
     this.stompClient = null;
@@ -63,14 +65,18 @@ export class ChatService implements OnDestroy {
   }
 
   private onConnected = (id: string): void => {
-    if (this.subscription) 
-      this.subscription.unsubscribe();
-    this.event$.next(null);
-    this.subscription = this.stompClient.subscribe(
-      `${this.CHAT_ROOM_TOPIC_PATH}/${id}`,
-      this.onEventPublished
-    );
-    Promise.resolve();
+    setTimeout(
+      () => {
+        if (this.subscription) 
+          this.subscription.unsubscribe();
+        this.event$.next(null);
+        this.subscription = this.stompClient.subscribe(
+          `${this.CHAT_ROOM_TOPIC_PATH}/${id}`,
+          this.onEventPublished
+        );
+        Promise.resolve();
+      }, this.TIMEOUT_FOR_CONNECTION_STABLISHING
+    )
   };
 
   private onConnectionError = (): void => {
