@@ -25,6 +25,7 @@ public class ChatRoomDto extends EntityDto<ChatRoom> {
     @Override
     public ChatRoom mapDtoToEntity() {
         ChatRoom chatRoom = new ChatRoom();
+        chatRoom.setId(this.getId());
         chatRoom.setName(this.getName());
         chatRoom.setCode(this.getCode());
         chatRoom.setMessages(
