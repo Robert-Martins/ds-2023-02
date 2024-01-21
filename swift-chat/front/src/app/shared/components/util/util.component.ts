@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DialogsService } from '../dialogs/dialogs.service';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { LoadingService } from '../splash-screen/loading.service';
+import { ApplicationError, SwiftApplicationError } from '../../../core/types/types';
 
 @Injectable()
 export abstract class UtilComponent {
@@ -18,9 +19,19 @@ export abstract class UtilComponent {
     this.router = injector.get(Router);
   }
 
-  public onLoadChatError(): void {
+  protected onLoadChatError(): void {
     this.snack.info('Você será redirecionado para a Home');
     this.loading.stop();
     this.router.navigate(['']);
   }
+
+  protected handleError(httpError: ApplicationError): void {
+    const error: any | SwiftApplicationError = httpError?.error;
+    this.snack.error(this.isSwiftApplicationError(error) ? error?.details : error?.message);
+  }
+
+  private isSwiftApplicationError(error: any | SwiftApplicationError): boolean {
+    return 'developerMessage' in error;
+  }
+
 }
