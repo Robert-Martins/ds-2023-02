@@ -51,23 +51,42 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
     this.isUser$.unsubscribe();
   }
 
-  public onUsernameInputBlur(): void {
+  public onUsernameSubmit(): void {
     if (this.usernameControl.valid) {
-      this.loading.start();
-      this.userService.create(this.usernameControl.value).subscribe({
-        next: (user: User) => {
-          this.userService.persistUser(user?.id);
-          this.isUser$.next(true);
-          this.loading.stop();
-        },
-        error: (error) => {
-          this.snack.error(error?.message);
-          this.loading.stop();
-        },
-      });
+      this.userService.isUser() ? this.createUser() : this.updateUser();
     } else {
       this.snack.info('Nome de usuário inválido');
     }
+  }
+
+  private createUser(): void {
+    this.loading.start();
+    this.userService.create(this.usernameControl.value).subscribe({
+      next: (user: User) => {
+        this.userService.persistUser(user?.id);
+        this.isUser$.next(true);
+        this.loading.stop();
+      },
+      error: (error) => {
+        this.snack.error(error?.message);
+        this.loading.stop();
+      },
+    });
+  }
+
+  private updateUser(): void {
+    this.loading.start();
+    this.userService.update(
+      new User(this.userService.getUserId(), this.usernameControl.value)
+    ).subscribe({
+      next: () => {
+        this.loading.stop();
+      },
+      error: (error) => {
+        this.snack.error(error?.message);
+        this.loading.stop();
+      },
+    });
   }
 
   private createUsernameControl(): void {
@@ -87,7 +106,8 @@ export class HomeComponent extends UtilComponent implements OnInit, OnDestroy {
           this.loading.stop();
         },
         error: (error) => {
-          this.snack.error(error?.message);
+          console.log(error)
+          this.snack.error(error?.details);
           this.userService.clearUserId();
           this.loading.stop();
         },

@@ -10,7 +10,8 @@
                     type="text"
                     placeholder="Nome de Usuário"
                     [formControl]="usernameControl"
-                    (blur)="onUsernameInputBlur()"
+                    (keyup)="onUsernameSubmit()"
+                    (blur)="onUsernameSubmit()"
                 />
                 <swift-form-field-error *ngIf="usernameControl?.touched && usernameControl?.errors?.['required']">
                     O nome de usuário é <strong>obrigatório</strong>
