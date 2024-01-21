@@ -22,7 +22,8 @@ public class SwiftExceptionHandler {
                         .developerMessage(NotFoundException.EXCEPTION_DEVELOPER_MESSAGE)
                         .className(Arrays.stream(exception.getStackTrace()).findFirst().get().getClassName())
                         .timestamp(LocalDateTime.now())
-                        .build(), HttpStatus.NOT_FOUND
+                        .build(),
+                HttpStatus.NOT_FOUND
         );
     }
 
